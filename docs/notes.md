@@ -85,8 +85,47 @@ I also learned that Git requires a configured username and email address before 
 Using meaningful commit messages makes project history easier to understand and maintain.
 
 
+## 3. Additional Docker Challenge: Receipt File Storage
 
-\## 3. Final Reflection
+Another challenge appeared when testing payment receipt uploads after moving the application from XAMPP to Docker.
+
+### Problem
+
+The n8n workflow originally generated receipt paths using a Windows-style path:
+
+`C:/n8n-data/receipts/`
+
+However, n8n was running inside a Linux-based Docker container and could not access that path. The workflow displayed a file or directory does not exist error, preventing the receipt-processing flow from completing.
+
+### Solution
+
+I solved the issue using a Docker bind mount.
+
+The host directory:
+
+`./n8n-data/receipts/`
+
+was mapped to the container directory:
+
+`/home/node/.n8n-files/receipts/`
+
+I then updated the receipt path in the n8n workflow to use the Linux container path.
+
+The `.gitignore` file was also updated to exclude `n8n-data/`, preventing uploaded payment receipts from being committed to GitHub.
+
+### Verification
+
+I verified that:
+
+1. The receipt directory was accessible from inside the n8n container.
+2. The container could create and remove a test file.
+3. A payment receipt was successfully saved in the mounted directory.
+4. The Telegram notification was received.
+5. The payment was successfully approved through Telegram.
+
+This challenge taught me that file paths inside Docker containers are different from host operating system paths, and that bind mounts are useful for sharing persistent files between the host and containers.
+
+\## 4. Final Reflection
 
 
 
