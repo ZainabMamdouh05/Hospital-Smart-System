@@ -1,0 +1,3318 @@
+{
+  "name": "Final Project: Hospital System - My Final MVP",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## Patient API - Lookup Patient",
+        "height": 384,
+        "width": 848,
+        "color": "#9D436F"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        0,
+        0
+      ],
+      "typeVersion": 1,
+      "id": "2505760c-96fb-42b9-b3ef-568831a7b127",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## Patient API - Get Clinics",
+        "height": 352,
+        "width": 848,
+        "color": "#6D4A64"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        0,
+        416
+      ],
+      "typeVersion": 1,
+      "id": "d7617fdf-cdcd-4aea-bdb4-adf9145a3e6e",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n    id,\n    national_id,\n    full_name,\n    date_of_birth,\n    nationality,\n    phone\nFROM patients\nWHERE national_id = {{ [$json.body.national_id] }};",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        304,
+        112
+      ],
+      "id": "e0c432a2-efe7-49a5-9b8e-8de8972df9d4",
+      "name": "Getting Patient Info Through ID",
+      "credentials": {
+        "mySql": {
+          "id": "QFGnzi0HO3mMNlvx",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n    id,\n    name,\n    description,\n    consultation_fee\nFROM clinics\nWHERE is_active = 1\nORDER BY id;",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        304,
+        528
+      ],
+      "id": "154f69cf-247c-459f-8f0c-0e8d948e0794",
+      "name": "Getting Clinics",
+      "credentials": {
+        "mySql": {
+          "id": "QFGnzi0HO3mMNlvx",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "patient/lookup",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        96,
+        112
+      ],
+      "id": "07b83cee-d94d-43f2-88d0-a74ca889583a",
+      "name": "Webhook Getting Patient Info Through ID",
+      "webhookId": "119b6620-8a2a-4bb8-b204-c9c2971c9aa2"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        528,
+        112
+      ],
+      "id": "52c6e602-dff8-4149-a6e0-102bb20940e9",
+      "name": "Respond to Webhook Getting Patient Info Through ID"
+    },
+    {
+      "parameters": {
+        "path": "patient/clinics",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        96,
+        528
+      ],
+      "id": "d6bce396-7945-4a64-8aa0-f7a3dac4cfb0",
+      "name": "Webhook Getting Clinics",
+      "webhookId": "c2fe09dd-99a3-4051-adcc-bf5bab50410a"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        688,
+        528
+      ],
+      "id": "74803307-1959-4d3d-bd17-58d319b6b8ac",
+      "name": "Respond to Webhook Getting Clinics"
+    },
+    {
+      "parameters": {
+        "content": "## Patient API - Get Current Doctor",
+        "height": 400,
+        "width": 832,
+        "color": "#693371"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        16,
+        800
+      ],
+      "typeVersion": 1,
+      "id": "203022a9-5211-43c6-8867-56e32763cc42",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "## Telegram - Payment Approval",
+        "height": 400,
+        "width": 2448,
+        "color": "#955050"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        880,
+        1408
+      ],
+      "typeVersion": 1,
+      "id": "8f4ea3e3-f133-4758-b350-f3c33bcf582e",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "content": "## Patient API - Create Clinic Booking Invoice\n\nCreates a pending Clinic invoice tied to a placeholder booking. The booking becomes Waiting and receives a queue number only after Telegram payment approval.",
+        "height": 272,
+        "width": 2068,
+        "color": "#413456"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1232,
+        1248
+      ],
+      "typeVersion": 1,
+      "id": "45368a6d-efa5-4d19-9645-bcb03532dbee",
+      "name": "Sticky Note6"
+    },
+    {
+      "parameters": {
+        "content": "## Admin API - Schedule Management",
+        "height": 400,
+        "width": 752,
+        "color": "#487A59"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        880,
+        2272
+      ],
+      "typeVersion": 1,
+      "id": "bf9bcf4f-2f48-432e-8447-405925cf65f3",
+      "name": "Sticky Note7"
+    },
+    {
+      "parameters": {
+        "path": "patient/current-doctor",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        128,
+        912
+      ],
+      "id": "58b9448e-f74b-4853-8d13-ae522da1e874",
+      "name": "Webhook Getting Current Doctor",
+      "webhookId": "c2fe09dd-99a3-4051-adcc-bf5bab50410a"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n    c.id AS clinic_id,\n    c.name AS clinic_name,\n    c.consultation_fee,\n\n    CASE\n        WHEN so.is_closed = 1 THEN NULL\n        WHEN so.replacement_doctor_id IS NOT NULL\n            THEN replacement_doctor.full_name\n        ELSE d.full_name\n    END AS doctor_name,\n\n    sh.name AS shift,\n\n    COALESCE(\n        so.override_start_time,\n        sh.start_time\n    ) AS start_time,\n\n    COALESCE(\n        so.override_end_time,\n        sh.end_time\n    ) AS end_time,\n\n    CASE\n        WHEN so.id IS NOT NULL THEN TRUE\n        ELSE FALSE\n    END AS has_override,\n\n    so.reason AS override_reason,\n\n    CURDATE() AS today_date,\n    CURTIME() AS now_time\n\nFROM clinics c\n\nINNER JOIN schedules s\n    ON s.clinic_id = c.id\n\nINNER JOIN shifts sh\n    ON sh.id = s.shift_id\n\nLEFT JOIN doctors d\n    ON d.id = s.doctor_id\n\nLEFT JOIN schedule_overrides so\n    ON so.override_date = CURDATE()\n    AND so.clinic_id = c.id\n    AND so.shift_id = sh.id\n    AND so.is_active = 1\n\nLEFT JOIN doctors replacement_doctor\n    ON replacement_doctor.id = so.replacement_doctor_id\n\nWHERE c.id = $1\n\n  AND c.is_active = 1\n  AND s.is_active = 1\n\n  AND s.day_of_week =\n      CASE DAYOFWEEK(CURDATE())\n          WHEN 1 THEN 'Sunday'\n          WHEN 2 THEN 'Monday'\n          WHEN 3 THEN 'Tuesday'\n          WHEN 4 THEN 'Wednesday'\n          WHEN 5 THEN 'Thursday'\n          WHEN 6 THEN 'Friday'\n          WHEN 7 THEN 'Saturday'\n      END\n\n  AND CURTIME() >=\n      COALESCE(so.override_start_time, sh.start_time)\n\n  AND CURTIME() <\n      COALESCE(so.override_end_time, sh.end_time)\n\n  AND COALESCE(so.is_closed, 0) = 0\n\nLIMIT 1;",
+        "options": {
+          "queryReplacement": "={{ $json.query.clinic_id }}"
+        }
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        336,
+        912
+      ],
+      "id": "02aa3de5-0e19-40d4-84c0-cfe8284f5b88",
+      "name": "Getting Current Doctor",
+      "credentials": {
+        "mySql": {
+          "id": "QFGnzi0HO3mMNlvx",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        560,
+        912
+      ],
+      "id": "dfeea536-0201-43fc-a9e2-181ff9ab9fe5",
+      "name": "Respond to Webhook Getting Current Doctor"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n    COALESCE(\n        MAX(queue_number),\n        0\n    ) + 1 AS next_queue_number\nFROM bookings\nWHERE booking_date = CURDATE()\n  AND doctor_id = $1\n  AND shift_id = $2;",
+        "options": {
+          "queryReplacement": "={{ [$json.doctor_id, $json.shift_id] }}"
+        }
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        2000,
+        1424
+      ],
+      "id": "2f6e1ab6-1995-49a4-8561-3f35a8389d14",
+      "name": "Getting Next Queue After Payment",
+      "credentials": {
+        "mySql": {
+          "id": "QFGnzi0HO3mMNlvx",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n    c.id AS clinic_id,\n    c.name AS clinic_name,\n    c.consultation_fee,\n\n    CASE\n        WHEN so.is_closed = 1 THEN NULL\n        WHEN so.replacement_doctor_id IS NOT NULL\n            THEN replacement_doctor.full_name\n        ELSE d.full_name\n    END AS doctor_name,\n\n    COALESCE(\n        so.replacement_doctor_id,\n        s.doctor_id\n    ) AS doctor_id,\n\n    sh.id AS shift_id,\n    sh.name AS shift,\n\n    s.id AS schedule_id,\n    so.id AS schedule_override_id,\n\n    COALESCE(\n        so.override_start_time,\n        sh.start_time\n    ) AS start_time,\n\n    COALESCE(\n        so.override_end_time,\n        sh.end_time\n    ) AS end_time\n\nFROM clinics c\n\nINNER JOIN schedules s\n    ON s.clinic_id = c.id\n\nINNER JOIN shifts sh\n    ON sh.id = s.shift_id\n\nLEFT JOIN doctors d\n    ON d.id = s.doctor_id\n\nLEFT JOIN schedule_overrides so\n    ON so.override_date = CURDATE()\n    AND so.clinic_id = c.id\n    AND so.shift_id = sh.id\n    AND so.is_active = 1\n\nLEFT JOIN doctors replacement_doctor\n    ON replacement_doctor.id = so.replacement_doctor_id\n\nWHERE c.id = $1\n  AND c.is_active = 1\n  AND s.is_active = 1\n\n AND s.day_of_week =\n    CASE DAYOFWEEK(CURDATE())\n        WHEN 1 THEN 'Sunday'\n        WHEN 2 THEN 'Monday'\n        WHEN 3 THEN 'Tuesday'\n        WHEN 4 THEN 'Wednesday'\n        WHEN 5 THEN 'Thursday'\n        WHEN 6 THEN 'Friday'\n        WHEN 7 THEN 'Saturday'\n    END\n\nAND CURTIME() >=\n    COALESCE(so.override_start_time, sh.start_time)\n\nAND CURTIME() <\n    COALESCE(so.override_end_time, sh.end_time)\n\nAND COALESCE(so.is_closed, 0) = 0\n\nLIMIT 1;",
+        "options": {
+          "queryReplacement": "={{ [String($json.body.clinic_id)] }}"
+        }
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        -1040,
+        1328
+      ],
+      "id": "2e95a8b1-f26d-4c5e-860a-c0b4f5679349",
+      "name": "Get Current Doctor",
+      "credentials": {
+        "mySql": {
+          "id": "QFGnzi0HO3mMNlvx",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ae5f8bca-3362-4170-ab0a-d36670b91cdc",
+              "name": "patient_id",
+              "value": "={{ $('Get Patient').first().json.patient_id }}",
+              "type": "number"
+            },
+            {
+              "id": "fd518098-fb5b-47eb-92c1-db76cd069bf8",
+              "name": "patient_name",
+              "value": "={{ $('Get Patient').first().json.patient_name }}",
+              "type": "string"
+            },
+            {
+              "id": "dd98d4cc-b207-47c9-8435-fb7ea6da2d58",
+              "name": "clinic_id",
+              "value": "={{ $('Webhook Create Clinic Booking Invoice').first().json.body.clinic_id }}",
+              "type": "number"
+            },
+            {
+              "id": "00e8f266-bf42-48bd-be2f-370441dcfbaf",
+              "name": "clinic_name",
+              "value": "={{ $('Get Current Doctor').first().json.clinic_name }}",
+              "type": "string"
+            },
+            {
+              "id": "97e46066-ee20-4f6b-b788-61c15a493290",
+              "name": "doctor_id",
+              "value": "={{ $('Get Current Doctor').first().json.doctor_id }}",
+              "type": "number"
+            },
+            {
+              "id": "a88c06d6-1cfc-4af5-98b5-74b0dbfb84d3",
+              "name": "doctor_name",
+              "value": "={{ $('Get Current Doctor').first().json.doctor_name }}",
+              "type": "string"
+            },
+            {
+              "id": "6cdf5e10-e12b-4862-aa7b-269dc1ab8425",
+              "name": "schedule_id",
+              "value": "={{ $('Get Current Doctor').first().json.schedule_id }}",
+              "type": "number"
+            },
+            {
+              "id": "fa27efb2-a701-417e-85fb-ff57a895a919",
+              "name": "schedule_override_id",
+              "value": "={{ $('Get Current Doctor').first().json.schedule_override_id }}",
+              "type": "string"
+            },
+            {
+              "id": "62ec686b-621a-4df8-967e-cb2f9746d432",
+              "name": "shift_id",
+              "value": "={{ $('Get Current Doctor').first().json.shift_id }}",
+              "type": "number"
+            },
+            {
+              "id": "cd4db22d-cd97-4d49-9672-270257d4da7b",
+              "name": "shift",
+              "value": "={{ $('Get Current Doctor').first().json.shift }}",
+              "type": "string"
+            },
+            {
+              "id": "61864109-7ad4-4dd7-8e8a-3d281a84c2d1",
+              "name": "consultation_fee",
+              "value": "={{ Number($('Get Current Doctor').first().json.consultation_fee) }}",
+              "type": "number"
+            },
+            {
+              "id": "d059cda6-1c25-4ec9-97fd-ad2e39c32af0",
+              "name": "invoice_number",
+              "value": "={{ 'INV-' + $now.toFormat('yyyyMMddHHmmssSSS') }}",
+              "type": "string"
+            },
+            {
+              "id": "fa8872a3-afe0-486a-a636-5375fb627728",
+              "name": "invoice_type",
+              "value": "Clinic",
+              "type": "string"
+            },
+            {
+              "id": "5a7f3aac-a95d-45b9-997b-a81a9c0f0e93",
+              "name": "description",
+              "value": "={{ 'حجز عيادة ' + $('Get Current Doctor').first().json.clinic_name + ' - ' + $('Get Current Doctor').first().json.doctor_name }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        -432,
+        1328
+      ],
+      "id": "1c44f1f9-aefb-43c4-8b09-1890e8905d5a",
+      "name": "Prepare Booking Data"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "INSERT INTO bookings (\n    patient_id,\n    clinic_id,\n    doctor_id,\n    schedule_id,\n    schedule_override_id,\n    shift_id,\n    booking_date,\n    queue_number,\n    status\n)\nVALUES (\n    $1,\n    $2,\n    $3,\n    $4,\n    $5,\n    $6,\n    CURDATE(),\n    NULL,\n    'Cancelled'\n);",
+        "options": {
+          "queryReplacement": "={{ [\n  $json.patient_id,\n  $json.clinic_id,\n  $json.doctor_id,\n  $json.schedule_id,\n  $json.schedule_override_id,\n  $json.shift_id\n] }}"
+        }
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        -208,
+        1328
+      ],
+      "id": "8537cd65-3299-4a59-ba7b-1c8878a23dc0",
+      "name": "Create Booking",
+      "credentials": {
+        "mySql": {
+          "id": "QFGnzi0HO3mMNlvx",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ {\n  success: true,\n  message: \"تم إنشاء فاتورة الحجز، بانتظار الدفع\",\n  invoice: {\n    id: $json.id,\n    invoice_number: $json.invoice_number,\n    patient_id: $json.patient_id,\n    patient_name: $json.patient_name,\n    booking_id: $json.booking_id,\n    invoice_type: $json.invoice_type,\n    clinic_name: $json.clinic_name,\n    doctor_name: $json.doctor_name,\n    description: $json.description,\n    amount: Number($json.amount),\n    payment_status: $json.status,\n    fulfillment_status: $json.fulfillment_status,\n    created_at: $json.created_at\n  }\n} }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        688,
+        1328
+      ],
+      "id": "6dfb1b22-d23c-4af4-b6b9-2ad2c38bb650",
+      "name": "Respond to Webhook Create Clinic Booking Invoice"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "patient/take-queue",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -1216,
+        1328
+      ],
+      "id": "8cad8855-01ae-4775-9a99-810b936db222",
+      "name": "Webhook Create Clinic Booking Invoice",
+      "webhookId": "c2fe09dd-99a3-4051-adcc-bf5bab50410a"
+    },
+    {
+      "parameters": {
+        "content": "## Doctor API - Get Queue",
+        "height": 320,
+        "width": 1088,
+        "color": "#7B6C51"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -240,
+        1584
+      ],
+      "typeVersion": 1,
+      "id": "ae3285de-6e60-46de-960c-cacbbc997aa5",
+      "name": "Sticky Note8"
+    },
+    {
+      "parameters": {
+        "path": "doctor/queue",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -48,
+        1680
+      ],
+      "id": "a8fa223e-e72c-43e5-8ea6-86532e54e17c",
+      "name": "Webhook Getting Queue For Doctor",
+      "webhookId": "c2fe09dd-99a3-4051-adcc-bf5bab50410a"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n    b.id AS booking_id,\n    b.queue_number,\n    p.id AS patient_id,\n    p.full_name AS patient_name,\n    p.national_id,\n    b.status,\n    b.booking_date,\n    sh.name AS shift,\n    \n    COALESCE(\n        so.override_start_time,\n        sh.start_time\n    ) AS start_time,\n\n    COALESCE(\n        so.override_end_time,\n        sh.end_time\n    ) AS end_time,\n\n    b.created_at,\n    b.called_at,\n    b.completed_at\n\nFROM bookings b\n\nINNER JOIN patients p\n    ON p.id = b.patient_id\n\nINNER JOIN shifts sh\n    ON sh.id = b.shift_id\n\nLEFT JOIN schedule_overrides so\n    ON so.override_date = b.booking_date\n    AND so.clinic_id = b.clinic_id\n    AND so.shift_id = b.shift_id\n    AND so.is_active = 1\n\nWHERE b.doctor_id = $1\n  AND b.booking_date = CURDATE()\n\n  AND b.status IN ('Waiting', 'Serving')\n\n  AND TIME('10:30:00') >=\n      COALESCE(so.override_start_time, sh.start_time)\n\n  AND TIME('10:30:00') <\n      COALESCE(so.override_end_time, sh.end_time)\n\nORDER BY\n    CASE\n        WHEN b.status = 'Serving' THEN 0\n        WHEN b.status = 'Waiting' THEN 1\n        ELSE 2\n    END,\n    b.queue_number;",
+        "options": {
+          "queryReplacement": "={{ [String($json.query.doctor_id)] }}"
+        }
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        160,
+        1680
+      ],
+      "id": "63b09a1c-daaa-49ca-8f4c-ad135607ffd0",
+      "name": "Getting Queue For Doctor",
+      "credentials": {
+        "mySql": {
+          "id": "QFGnzi0HO3mMNlvx",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        384,
+        1680
+      ],
+      "id": "3d66442c-b062-4ad8-976a-b1a0f2b8fd80",
+      "name": "Respond to Webhook Getting Queue For Doctor"
+    },
+    {
+      "parameters": {
+        "content": "## Doctor API - Call Next",
+        "height": 480,
+        "width": 1888,
+        "color": "#55768B"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1040,
+        1968
+      ],
+      "typeVersion": 1,
+      "id": "94a74e36-9451-4f78-b075-d359578112ec",
+      "name": "Sticky Note9"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "doctor/call-next",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -992,
+        2096
+      ],
+      "id": "9e7681e5-be6f-407b-84fe-c0995d1cbf91",
+      "name": "Webhook Call Next",
+      "webhookId": "c2fe09dd-99a3-4051-adcc-bf5bab50410a"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n    COALESCE(\n        SUM(CASE WHEN b.status = 'Serving' THEN 1 ELSE 0 END),\n        0\n    ) AS serving_count,\n\n    MAX(\n        CASE\n            WHEN b.status = 'Serving' THEN b.id\n        END\n    ) AS booking_id,\n\n    MAX(\n        CASE\n            WHEN b.status = 'Serving' THEN b.queue_number\n        END\n    ) AS queue_number,\n\n    MAX(\n        CASE\n            WHEN b.status = 'Serving' THEN b.patient_id\n        END\n    ) AS patient_id,\n\n    MAX(\n        CASE\n            WHEN b.status = 'Serving' THEN p.full_name\n        END\n    ) AS patient_name\n\nFROM bookings b\n\nLEFT JOIN patients p\n    ON p.id = b.patient_id\n\nWHERE b.doctor_id = $1\n  AND b.booking_date = CURDATE();",
+        "options": {
+          "queryReplacement": "={{ [String($json.body.doctor_id)] }}"
+        }
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        -768,
+        2096
+      ],
+      "id": "98e9850b-acd6-4d3b-8ef8-a0162a445f96",
+      "name": "Get Current Serving",
+      "credentials": {
+        "mySql": {
+          "id": "QFGnzi0HO3mMNlvx",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "5d50bb24-8e5c-4850-a691-5a9b7530b450",
+              "leftValue": "={{ Number($json.serving_count) }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -544,
+        2096
+      ],
+      "id": "e8598a67-6d54-47d2-a6a4-08ab9bb1955b",
+      "name": "Is Patient Currently Serving?"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n    (\n        SELECT b.id\n        FROM bookings b\n        WHERE b.doctor_id = $1\n          AND b.booking_date = CURDATE()\n          AND b.status = 'Waiting'\n        ORDER BY b.queue_number ASC\n        LIMIT 1\n    ) AS next_booking_id;",
+        "options": {
+          "queryReplacement": "={{ [String($('Webhook Call Next').first().json.body.doctor_id)] }}"
+        }
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        -320,
+        2192
+      ],
+      "id": "555b8674-ee63-4ade-b981-c6435c628233",
+      "name": "Get Next Waiting",
+      "credentials": {
+        "mySql": {
+          "id": "QFGnzi0HO3mMNlvx",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "23bd9c61-9e17-45af-8457-330de1eb6948",
+              "leftValue": "={{ $json.next_booking_id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "number",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -96,
+        2192
+      ],
+      "id": "a7465c30-9144-48a5-a43d-8d3533d82388",
+      "name": "Is Waiting Patient Available?"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "UPDATE bookings\n\nSET\n    status = 'Serving',\n    called_at = NOW()\n\nWHERE id = $1\n  AND status = 'Waiting'\n  AND booking_date = CURDATE();",
+        "options": {
+          "queryReplacement": "={{ [String($('Get Next Waiting').first().json.next_booking_id)] }}"
+        }
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        128,
+        2096
+      ],
+      "id": "410efd55-3b44-4ab9-9c74-5e8c30a6c20e",
+      "name": "Set Patient To Serving",
+      "credentials": {
+        "mySql": {
+          "id": "QFGnzi0HO3mMNlvx",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n    b.id AS booking_id,\n    b.queue_number,\n    b.status,\n    b.booking_date,\n    b.called_at,\n\n    p.id AS patient_id,\n    p.full_name AS patient_name,\n    p.national_id,\n\n    c.name AS clinic_name,\n    d.full_name AS doctor_name,\n\n    sh.name AS shift\n\nFROM bookings b\n\nINNER JOIN patients p\n    ON p.id = b.patient_id\n\nINNER JOIN clinics c\n    ON c.id = b.clinic_id\n\nLEFT JOIN doctors d\n    ON d.id = b.doctor_id\n\nINNER JOIN shifts sh\n    ON sh.id = b.shift_id\n\nWHERE b.id = $1\nLIMIT 1;",
+        "options": {
+          "queryReplacement": "={{ [String($('Get Next Waiting').first().json.next_booking_id)] }}"
+        }
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        352,
+        2096
+      ],
+      "id": "814e4bb0-4756-41e3-98f2-95ac515c2c40",
+      "name": "Get Called Patient",
+      "credentials": {
+        "mySql": {
+          "id": "QFGnzi0HO3mMNlvx",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        -320,
+        2000
+      ],
+      "id": "01a08cd7-5338-4638-8e58-197329088cac",
+      "name": "Respond to Webhook Call Next"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"success\": false,\n  \"message\": \"لا يوجد مرضى في قائمة الانتظار\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        128,
+        2288
+      ],
+      "id": "ae3de89e-8d9f-4fc3-ae99-c9f2ef95a043",
+      "name": "Respond to Webhook No Waiting Patients"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"success\": true,\n  \"message\": \"تم استدعاء المريض التالي\",\n  \"booking_id\": \"={{ $json.booking_id }}\",\n  \"queue_number\": \"={{ $json.queue_number }}\",\n  \"patient_name\": \"={{ $json.patient_name }}\",\n  \"clinic\": \"={{ $json.clinic_name }}\",\n  \"doctor\": \"={{ $json.doctor_name }}\",\n  \"shift\": \"={{ $json.shift }}\",\n  \"status\": \"={{ $json.status }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        576,
+        2096
+      ],
+      "id": "fd9c8dd7-9237-47b5-8735-e7bf6b94c985",
+      "name": "Respond to Webhook Call Next Patient"
+    },
+    {
+      "parameters": {
+        "content": "## Doctor API - Complete Patient",
+        "height": 464,
+        "width": 1136,
+        "color": "#6E4335"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -288,
+        2496
+      ],
+      "typeVersion": 1,
+      "id": "a2d439d6-974e-4ea5-b661-a33d0e6c198e",
+      "name": "Sticky Note10"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "UPDATE bookings\nSET\n    status = 'Completed',\n    completed_at = NOW()\nWHERE id = $1\n  AND doctor_id = $2\n  AND booking_date = CURDATE()\n  AND status = 'Serving';",
+        "options": {
+          "queryReplacement": "={{ [\n  String($json.body.booking_id),\n  String($json.body.doctor_id)\n] }}"
+        }
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        -32,
+        2624
+      ],
+      "id": "00b6bbfe-2bbc-4e3d-b57b-78a416904e32",
+      "name": "Complete Booking",
+      "credentials": {
+        "mySql": {
+          "id": "QFGnzi0HO3mMNlvx",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "doctor/complete-patient",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -240,
+        2624
+      ],
+      "id": "56dae449-92a9-4f6d-b93a-c20adbee49c8",
+      "name": "Webhook Complete Booking",
+      "webhookId": "c2fe09dd-99a3-4051-adcc-bf5bab50410a"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"success\": true,\n  \"message\": \"تم إنهاء دور المريض بنجاح\",\n  \"booking_id\": \"={{ $json.booking_id }}\",\n  \"queue_number\": \"={{ $json.queue_number }}\",\n  \"patient_name\": \"={{ $json.patient_name }}\",\n  \"clinic\": \"={{ $json.clinic_name }}\",\n  \"doctor\": \"={{ $json.doctor_name }}\",\n  \"status\": \"={{ $json.status }}\",\n  \"completed_at\": \"={{ $json.completed_at }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        576,
+        2624
+      ],
+      "id": "e437721b-a0bd-42f5-be55-96bbba736549",
+      "name": "Respond to Webhook Complete Booking"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n    b.id AS booking_id,\n    b.queue_number,\n\n    p.id AS patient_id,\n    p.full_name AS patient_name,\n    p.national_id,\n\n    c.id AS clinic_id,\n    c.name AS clinic_name,\n\n    d.id AS doctor_id,\n    d.full_name AS doctor_name,\n\n    b.status,\n    b.booking_date,\n    b.completed_at\n\nFROM bookings b\n\nINNER JOIN patients p\n    ON p.id = b.patient_id\n\nINNER JOIN clinics c\n    ON c.id = b.clinic_id\n\nLEFT JOIN doctors d\n    ON d.id = b.doctor_id\n\nWHERE b.id = $1\n  AND b.doctor_id = $2\nLIMIT 1;",
+        "options": {
+          "queryReplacement": "={{ [\n  String($('Webhook Complete Booking').first().json.body.booking_id),\n  String($('Webhook Complete Booking').first().json.body.doctor_id)\n] }}"
+        }
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        224,
+        2624
+      ],
+      "id": "0bdecb09-3855-4d92-9e6d-a88e161589b6",
+      "name": "Get Completed Patient",
+      "credentials": {
+        "mySql": {
+          "id": "QFGnzi0HO3mMNlvx",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Staff API - Create Invoice",
+        "height": 496,
+        "width": 1424,
+        "color": "#5F6543"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        880,
+        0
+      ],
+      "typeVersion": 1,
+      "id": "9716b7d2-3214-4fc3-a13a-d2b213a2a837",
+      "name": "Sticky Note11"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "staff/create-invoice",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        928,
+        176
+      ],
+      "id": "9519ca2c-15e9-4779-8186-b34efff15605",
+      "name": "Webhook Create Invoice",
+      "webhookId": "119b6620-8a2a-4bb8-b204-c9c2971c9aa2"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n    p.id AS patient_id,\n    p.national_id,\n    p.full_name\nFROM\n    (SELECT $1 AS national_id) AS input\nLEFT JOIN patients p\n    ON p.national_id = input.national_id;",
+        "options": {
+          "queryReplacement": "={{ [String($json.body.national_id)] }}"
+        }
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        1120,
+        176
+      ],
+      "id": "655d4d90-a5c9-4f22-9388-088f679eb036",
+      "name": "Find Patient",
+      "credentials": {
+        "mySql": {
+          "id": "QFGnzi0HO3mMNlvx",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "90effd6b-c5a7-4985-b824-dcc6b27ed8c7",
+              "leftValue": "={{ !!$json.patient_id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1312,
+        176
+      ],
+      "id": "31fde1c2-c234-4625-915d-323a9bd1d17e",
+      "name": "Is Patient Found?"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "4a392083-6da5-43f7-b470-9fc2615e36f9",
+              "name": "patient_id",
+              "value": "={{ $json.patient_id }}",
+              "type": "number"
+            },
+            {
+              "id": "60db1700-45df-431e-a2f9-21ba27486a3b",
+              "name": "patient_name",
+              "value": "={{ $('Find Patient').item.json.full_name }}",
+              "type": "string"
+            },
+            {
+              "id": "06b9241a-6f22-4bd5-ab71-8f181cf58dc6",
+              "name": "national_id",
+              "value": "={{ $json.national_id }}",
+              "type": "string"
+            },
+            {
+              "id": "f18ef1e0-8967-4c50-b523-87244acfbf75",
+              "name": "invoice_type",
+              "value": "={{ $('Webhook Create Invoice').item.json.body.invoice_type }}",
+              "type": "string"
+            },
+            {
+              "id": "1047e461-1ec7-4999-8c50-ea70ef4e041e",
+              "name": "amount",
+              "value": "={{ $('Webhook Create Invoice').item.json.body.amount }}",
+              "type": "number"
+            },
+            {
+              "id": "29cd6cf0-8262-4e7d-9f56-82fca5059612",
+              "name": "invoice_number",
+              "value": "={{ 'INV-' + $now.toFormat('yyyyMMddHHmmssSSS') }}",
+              "type": "string"
+            },
+            {
+              "id": "237f5012-d3ad-4f7e-92e6-2cafd7453c8d",
+              "name": "description",
+              "value": "={{ $('Webhook Create Invoice').item.json.body.description }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        1472,
+        32
+      ],
+      "id": "e4e491b1-e427-4068-a12f-2d6c4f198585",
+      "name": "Prepare Invoice Data"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "50ad6211-f8bf-4ad9-93de-706eb73c6ce4",
+              "leftValue": "={{ Number($json.amount) }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1616,
+        176
+      ],
+      "id": "b4f0432e-6841-4cef-9d5f-447546f6ccc5",
+      "name": "Is Amount Valid?"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "INSERT INTO invoices (\n    invoice_number,\n    patient_id,\n    invoice_type,\n    description,\n    amount,\n    status,\n    fulfillment_status\n)\nVALUES (\n    $1,\n    $2,\n    $3,\n    $4,\n    $5,\n    'Pending',\n    'Pending'\n);",
+        "options": {
+          "queryReplacement": "={{ [  $json.invoice_number,  $json.patient_id,  $json.invoice_type,  $json.description,  $json.amount] }}"
+        }
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        1760,
+        32
+      ],
+      "id": "ff909ba0-8c2e-4a7e-b719-9088f72cd5eb",
+      "name": "Create Invoice",
+      "credentials": {
+        "mySql": {
+          "id": "QFGnzi0HO3mMNlvx",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n    i.id,\n    i.invoice_number,\n    i.patient_id,\n    p.national_id,\n    p.full_name AS patient_name,\n\n    i.invoice_type,\n    i.description,\n    i.amount,\n\n    i.status,\n    i.fulfillment_status,\n    i.created_at\n\nFROM invoices i\n\nINNER JOIN patients p\n    ON p.id = i.patient_id\n\nWHERE i.invoice_number = $1\n\nLIMIT 1;",
+        "options": {
+          "queryReplacement": "={{ [String($('Prepare Invoice Data').first().json.invoice_number)] }}"
+        }
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        1920,
+        32
+      ],
+      "id": "4b125993-a1dd-48d6-811e-708566692328",
+      "name": "Get Created Invoice",
+      "credentials": {
+        "mySql": {
+          "id": "QFGnzi0HO3mMNlvx",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"success\": true,\n  \"message\": \"تم إنشاء الفاتورة بنجاح\",\n  \"invoice\": {\n    \"id\": \"={{ $json.id }}\",\n    \"invoice_number\": \"={{ $json.invoice_number }}\",\n    \"patient_id\": \"={{ $json.patient_id }}\",\n    \"patient_name\": \"={{ $json.patient_name }}\",\n    \"invoice_type\": \"={{ $json.invoice_type }}\",\n    \"description\": \"={{ $json.description }}\",\n    \"amount\": \"={{ $json.amount }}\",\n    \"payment_status\": \"={{ $json.status }}\",\n    \"fulfillment_status\": \"={{ $json.fulfillment_status }}\",\n    \"created_at\": \"={{ $json.created_at }}\"\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        2096,
+        32
+      ],
+      "id": "525630dd-bf80-4e10-a7ac-2fc54d471fd6",
+      "name": "Respond to Webhook Create Invoice"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"success\": false,\n  \"message\": \"المريض غير موجود\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        1472,
+        320
+      ],
+      "id": "762ce830-c3a5-4c97-a90d-78a32e24e3c2",
+      "name": "Respond to Webhook Create Invoice: No Patient Found"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"success\": false,\n  \"message\": \"قيمة الفاتورة غير صحيحة\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        1760,
+        320
+      ],
+      "id": "9f404351-9cf1-488d-8ed4-d4e30b38faf3",
+      "name": "Respond to Webhook Create Invoice: Not A Valid Value"
+    },
+    {
+      "parameters": {
+        "content": "## Patient API - Get Pending Invoices",
+        "height": 320,
+        "width": 832,
+        "color": "#49585B"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        880,
+        528
+      ],
+      "typeVersion": 1,
+      "id": "b2d05123-fe16-4cc3-a7ac-1bfc59fd7c08",
+      "name": "Sticky Note12"
+    },
+    {
+      "parameters": {
+        "path": "patient/pending-invoices",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        944,
+        608
+      ],
+      "id": "1a49aa73-976f-4f53-af26-17b9f4cb0f7d",
+      "name": "Webhook Getting Pending Invoices",
+      "webhookId": "119b6620-8a2a-4bb8-b204-c9c2971c9aa2"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n    i.id,\n    i.invoice_number,\n    i.invoice_type,\n    i.description,\n    i.amount,\n    i.status,\n    i.fulfillment_status,\n    i.created_at,\n    i.booking_id,\n    b.clinic_id,\n    c.name AS clinic_name,\n    b.doctor_id,\n    d.full_name AS doctor_name,\n    b.queue_number,\n    b.booking_date\nFROM invoices i\nINNER JOIN patients p ON p.id = i.patient_id\nLEFT JOIN bookings b ON b.id = i.booking_id\nLEFT JOIN clinics c ON c.id = b.clinic_id\nLEFT JOIN doctors d ON d.id = b.doctor_id\nWHERE p.national_id = $1\n  AND i.status = 'Pending'\n  AND i.fulfillment_status = 'Pending'\nORDER BY i.created_at DESC;",
+        "options": {
+          "queryReplacement": "={{ [String($json.query.national_id)] }}"
+        }
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        1152,
+        608
+      ],
+      "id": "70aef36e-6ed6-46ff-9350-c7cd8feed1da",
+      "name": "Get Pending Invoices",
+      "credentials": {
+        "mySql": {
+          "id": "QFGnzi0HO3mMNlvx",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        1520,
+        608
+      ],
+      "id": "1fb3ff29-2645-4501-b94e-7b780d0be522",
+      "name": "Respond to Webhook Getting Pending Invoices"
+    },
+    {
+      "parameters": {
+        "content": "## Patient API - Submit Payment (Invoices + Clinic Booking)",
+        "height": 448,
+        "width": 1984,
+        "color": "#5C729D"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        880,
+        896
+      ],
+      "typeVersion": 1,
+      "id": "6af4ab0c-c24a-4f3a-b783-1d7d8bc38c81",
+      "name": "Sticky Note13"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "patient/submit-payment",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        912,
+        1056
+      ],
+      "id": "28dc5a54-3ea6-48b3-bc71-c3cece312e19",
+      "name": "Webhook Submit Payment",
+      "webhookId": "119b6620-8a2a-4bb8-b204-c9c2971c9aa2"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n    p.id AS patient_id,\n    p.full_name AS patient_name,\n    p.national_id,\n\n    i.id AS invoice_id,\n    i.invoice_number,\n    i.invoice_type,\n    i.description,\n    i.amount,\n    i.status AS invoice_status,\n    i.fulfillment_status,\n\n    (\n        SELECT COUNT(*)\n        FROM payments pay\n        WHERE pay.invoice_id = i.id\n          AND pay.status = 'Pending'\n    ) AS pending_payment_count\n\nFROM patients p\n\nINNER JOIN invoices i\n    ON i.patient_id = p.id\n\nWHERE BINARY p.national_id = BINARY '{{ $json.body.national_id }}'\n  AND i.id = {{ Number($json.body.invoice_id) }}\n\nLIMIT 1;",
+        "options": {
+          "queryReplacement": "="
+        }
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        1120,
+        1056
+      ],
+      "id": "0cb80dda-2a5d-441e-a0d8-0f16c2175db8",
+      "name": "Validate Payment Request",
+      "credentials": {
+        "mySql": {
+          "id": "QFGnzi0HO3mMNlvx",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "1fedaada-e605-404d-a600-76b150dedf68",
+              "leftValue": "={{  $json.patient_id !== null &&  $json.invoice_id !== null &&  $json.invoice_status === 'Pending' &&  $json.fulfillment_status === 'Pending' &&  Number($json.pending_payment_count) === 0}}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1344,
+        1056
+      ],
+      "id": "a0d4a68e-1ae6-4a7f-8b4d-fcbd0b8c0222",
+      "name": "Is Payment Request Valid?"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{\n  $json.patient_id !== null &&\n  $json.invoice_id !== null &&\n  $json.invoice_status === 'Pending' &&\n  $json.fulfillment_status === 'Pending' &&\n  Number($json.pending_payment_count) === 0\n}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        1488,
+        1168
+      ],
+      "id": "c2ae2c1a-5d90-4200-993c-573d1e3e4c90",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "4aeaa612-b362-4926-99dc-af86f0f4935d",
+              "name": "patient_id",
+              "value": "={{ $('Validate Payment Request').first().json.patient_id }}",
+              "type": "number"
+            },
+            {
+              "id": "926c2052-5631-4789-a814-e2bbe6fa3097",
+              "name": "patient_name",
+              "value": "={{ $('Validate Payment Request').first().json.patient_name }}",
+              "type": "string"
+            },
+            {
+              "id": "793c82f1-2695-4e7a-96a3-b92df782a1ef",
+              "name": "invoice_id",
+              "value": "={{ $('Validate Payment Request').first().json.invoice_id }}",
+              "type": "number"
+            },
+            {
+              "id": "2b41bf9e-f7c9-4e4d-8905-4209167907aa",
+              "name": "invoice_number",
+              "value": "={{ $('Validate Payment Request').first().json.invoice_number }}",
+              "type": "string"
+            },
+            {
+              "id": "67516120-1dfc-4722-bfbd-0c08419cd49b",
+              "name": "amount",
+              "value": "={{ Number($('Validate Payment Request').first().json.amount) }}",
+              "type": "string"
+            },
+            {
+              "id": "91ffbd1d-d517-4ba9-9c9b-584e09fb6020",
+              "name": "receipt_path",
+              "value": "={{\n  'C:/n8n-data/receipts/payment_' +\n  $('Validate Payment Request').first().json.invoice_id +\n  '_' +\n  $now.toFormat('yyyyMMddHHmmssSSS') +\n  '.' +\n  ($('Webhook Submit Payment').first().binary.receipt.fileExtension || 'jpg')\n}}",
+              "type": "string"
+            },
+            {
+              "id": "b2ba9dd6-c263-4b03-9976-bd0a45afbaf3",
+              "name": "sender_name",
+              "value": "={{ $('Webhook Submit Payment').first().json.body.sender_name }}",
+              "type": "string"
+            },
+            {
+              "id": "c63f53aa-7e2c-43a6-b852-a1e08fe29fe6",
+              "name": "sender_phone",
+              "value": "={{ $('Webhook Submit Payment').first().json.body.sender_phone }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        1536,
+        992
+      ],
+      "id": "e1a9d60b-ca21-45e7-8610-d9781555b157",
+      "name": "Prepare Payment Data"
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "={{ $json.receipt_path }}",
+        "dataPropertyName": "receipt",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1.1,
+      "position": [
+        1936,
+        992
+      ],
+      "id": "f820cb5f-a3ec-4a79-9fc1-bf48a9fdf69d",
+      "name": "Read/Write Files from Disk"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "INSERT INTO payments (\n    invoice_id,\n    patient_id,\n    sender_name,\n    sender_phone,\n    amount,\n    receipt_url,\n    status\n)\nVALUES (\n    $1,\n    $2,\n    $3,\n    $4,\n    $5,\n    $6,\n    'Pending'\n);",
+        "options": {
+          "queryReplacement": "={{ [\n  String($json.invoice_id),\n  String($json.patient_id),\n  $json.sender_name,\n  $json.sender_phone,\n  Number($json.amount),\n  $json.receipt_path\n] }}"
+        }
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        2096,
+        992
+      ],
+      "id": "0b8cd1c5-eadc-4cf7-9ae5-2f572bb2b2f0",
+      "name": "Create Payment",
+      "credentials": {
+        "mySql": {
+          "id": "QFGnzi0HO3mMNlvx",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n    pay.id AS payment_id,\n    pay.invoice_id,\n    i.invoice_number,\n    i.invoice_type,\n    i.description,\n\n    p.id AS patient_id,\n    p.full_name AS patient_name,\n    p.national_id,\n\n    pay.sender_name,\n    pay.sender_phone,\n\n    pay.amount,\n    pay.receipt_url,\n    pay.status,\n    pay.created_at\n\nFROM payments pay\n\nINNER JOIN invoices i\n    ON i.id = pay.invoice_id\n\nINNER JOIN patients p\n    ON p.id = pay.patient_id\n\nWHERE pay.invoice_id = $1\n  AND pay.status = 'Pending'\n\nORDER BY pay.id DESC\n\nLIMIT 1;",
+        "options": {
+          "queryReplacement": "={{  [    String($('Prepare Payment Data').first().json.invoice_id)  ]}}"
+        }
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        2256,
+        992
+      ],
+      "id": "1e55b683-2eff-41bc-a745-217b54960320",
+      "name": "Get Created Payment",
+      "credentials": {
+        "mySql": {
+          "id": "QFGnzi0HO3mMNlvx",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const current = $input.first();\n\n// استبدلي اسم الـWebhook بالاسم الفعلي عندك\nconst webhook = $('Webhook Submit Payment').first();\n\nreturn [\n  {\n    json: current.json,\n    binary: webhook.binary,\n  },\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1744,
+        992
+      ],
+      "id": "f4416c4c-ebb0-400d-b600-ee17c94a68ab",
+      "name": "Attach Receipt Binary"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "=={{\n  {\n    success: true,\n    message: \"تم استلام طلب الدفع وسيتم مراجعته\",\n    payment: {\n      payment_id: $('Get Created Payment').first().json.payment_id,\n      invoice_id: $('Get Created Payment').first().json.invoice_id,\n      invoice_number: $('Get Created Payment').first().json.invoice_number,\n      patient_name: $('Get Created Payment').first().json.patient_name,\n      amount: Number($('Get Created Payment').first().json.amount),\n      status: $('Get Created Payment').first().json.status,\n      created_at: $('Get Created Payment').first().json.created_at\n    }\n  }\n}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        2688,
+        992
+      ],
+      "id": "745db987-ec1b-4745-8512-e90916cd39cf",
+      "name": "Respond to Webhook Submit Payment"
+    },
+    {
+      "parameters": {
+        "operation": "sendPhoto",
+        "chatId": "6541984144",
+        "binaryData": true,
+        "binaryPropertyName": "receipt",
+        "replyMarkup": "inlineKeyboard",
+        "inlineKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "✅ Approve",
+                    "additionalFields": {
+                      "callback_data": "=approve_payment_{{ $json.payment_id }}"
+                    }
+                  },
+                  {
+                    "text": "❌ Reject",
+                    "additionalFields": {
+                      "callback_data": "=reject_payment_{{ $json.payment_id }}"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "additionalFields": {
+          "caption": "=💰 طلب دفع جديد\n👤 المريض: {{ $json.patient_name }} \n🧾 رقم الفاتورة: {{ $json.invoice_number }} \n📌 نوع الفاتورة: {{ $json.invoice_type }} \n📝 الوصف: {{ $json.description }} \n💵 المبلغ: {{ $json.amount }} \n🏦 اسم حساب المُرسل: {{ $json.sender_name }}\n📱 هاتف المُرسل: {{ $json.sender_phone }} \n🆔 Payment ID: {{ $json.payment_id }} \n⏳ الحالة: Pending"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        2528,
+        992
+      ],
+      "id": "4449d63d-1601-497c-8f93-922ddbde5976",
+      "name": "Telegram - Send Payment",
+      "webhookId": "a8b7fbdf-9085-47c2-a99e-835c44097481",
+      "credentials": {
+        "telegramApi": {
+          "id": "fu0pnrp8k527nwSO",
+          "name": "Telegram account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const payment = $('Get Created Payment').first();\nconst webhook = $('Webhook Submit Payment').first();\n\nreturn [\n  {\n    json: payment.json,\n    binary: webhook.binary,\n  },\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2384,
+        992
+      ],
+      "id": "bf80f62d-0dcf-4012-aafe-6be07e3d26f4",
+      "name": "Attach Receipt For Telegram"
+    },
+    {
+      "parameters": {
+        "updates": [
+          "callback_query"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.5,
+      "position": [
+        912,
+        1520
+      ],
+      "id": "b7aaa54e-4e37-48e4-8a65-9befa4bf95f2",
+      "name": "Telegram Trigger",
+      "webhookId": "e75795cb-9337-463d-96d0-05c74392316e",
+      "credentials": {
+        "telegramApi": {
+          "id": "fu0pnrp8k527nwSO",
+          "name": "Telegram account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "da6f2dc4-9a06-4742-821b-358417045f59",
+              "leftValue": "={{ $json.action === 'approve' }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1280,
+        1520
+      ],
+      "id": "6b531dcc-c563-42bc-9836-bf1e1a0d61df",
+      "name": "Is Approve?"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "UPDATE payments p\nINNER JOIN invoices i\n    ON i.id = p.invoice_id\nSET\n    p.status = 'Approved',\n    p.reviewed_at = NOW(),\n    i.status = 'Paid',\n    i.paid_at = NOW()\nWHERE p.id = {{ Number($json.payment_id) }}\n  AND p.status = 'Pending'\n  AND i.status = 'Pending';",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        1456,
+        1424
+      ],
+      "id": "7fb91091-6a5b-4d9c-9f43-51b4ab5e0625",
+      "name": "Approve Payment & Invoice",
+      "alwaysOutputData": true,
+      "credentials": {
+        "mySql": {
+          "id": "QFGnzi0HO3mMNlvx",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.first().json;\n\nconst data = String(\n  input.data ??\n  input.callback_query?.data ??\n  ''\n).trim();\n\nif (!data) {\n  throw new Error('لم تصل callback data من Telegram');\n}\n\nconst match = /^(approve|reject)_payment_(\\d+)$/.exec(data);\n\nif (!match) {\n  throw new Error(`Callback غير معروف: ${data}`);\n}\n\nconst action = match[1];\nconst paymentId = Number(match[2]);\n\nreturn [\n  {\n    json: {\n      action,\n      payment_id: paymentId,\n      callback_data: data,\n    },\n  },\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1104,
+        1520
+      ],
+      "id": "4e292555-0b9d-461a-9f37-d02523f9c815",
+      "name": "Parse Payment Action"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "UPDATE payments\nSET\n    status = 'Rejected',\n    reviewed_at = NOW()\nWHERE id = {{ Number($json.payment_id) }}\n  AND status = 'Pending';",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        2016,
+        1664
+      ],
+      "id": "a296cc58-f6a3-4485-8d49-a23e73fcd04c",
+      "name": "Reject Payment",
+      "alwaysOutputData": true,
+      "credentials": {
+        "mySql": {
+          "id": "QFGnzi0HO3mMNlvx",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "callback",
+        "queryId": "={{ $('Telegram Trigger').item.json.callback_query.id }}",
+        "additionalFields": {
+          "show_alert": false,
+          "text": "{{ $('Parse Payment Action').first().json.action === 'approve'   ? 'تم اعتماد الدفع ✅'   : 'تم رفض الدفع ❌' }}"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        3184,
+        1536
+      ],
+      "id": "d06581b1-16a3-4516-9aaa-1b4dcc1571bc",
+      "name": "Answer Callback Query",
+      "webhookId": "5d8eee16-4ae9-4ae0-ab13-01ff39263da7",
+      "credentials": {
+        "telegramApi": {
+          "id": "fu0pnrp8k527nwSO",
+          "name": "Telegram account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const src = $('Telegram Trigger').first().json;\n\nconst callback = src.callback_query;\n\nconst chatId =\n  callback?.message?.chat?.id ??\n  src.message?.chat?.id ??\n  src.chat?.id;\n\nconst messageId =\n  callback?.message?.message_id ??\n  src.message?.message_id ??\n  src.message_id;\n\nif (!chatId) {\n  throw new Error('لم يتم العثور على chat_id في Telegram Trigger');\n}\n\nif (!messageId) {\n  throw new Error('لم يتم العثور على message_id في Telegram Trigger');\n}\n\nreturn [\n  {\n    json: {\n      chat_id: chatId,\n      message_id: Number(messageId),\n      payment_id: Number(\n        String(src.data ?? callback?.data ?? '')\n          .split('_')\n          .pop()\n      ),\n    },\n  },\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2432,
+        1536
+      ],
+      "id": "00efda46-ffed-433c-9aad-8452f681958d",
+      "name": "Prepare Telegram Edit"
+    },
+    {
+      "parameters": {
+        "jsCode": "const db = $input.first().json;\nconst telegram = $('Prepare Telegram Edit').first().json;\n\nconst isApproved = db.payment_status === 'Approved';\nconst isClinic = db.invoice_type === 'Clinic';\n\nconst title = isApproved\n  ? '✅ تم اعتماد طلب الدفع'\n  : '❌ تم رفض طلب الدفع';\n\nconst paymentLabel = isApproved ? 'Approved' : 'Rejected';\nconst invoiceLabel = db.invoice_status || (isApproved ? 'Paid' : 'Pending');\n\nconst queueLine = (isApproved && isClinic && db.queue_number != null)\n  ? `🎟️ رقم الدور: ${db.queue_number}\\n`\n  : '';\n\nreturn [\n  {\n    json: {\n      chat_id: Number(telegram.chat_id),\n      message_id: Number(telegram.message_id),\n\n      caption:\n        `${title}\\n\\n` +\n        `💰 طلب دفع\\n\\n` +\n        `👤 المريض: ${db.patient_name || '-'}\\n` +\n        `🆔 رقم الهوية: ${db.national_id || '-'}\\n` +\n        `🧾 رقم الفاتورة: ${db.invoice_number || '-'}\\n` +\n        `📌 نوع الفاتورة: ${db.invoice_type || '-'}\\n` +\n        `${isClinic ? `🏥 العيادة: ${db.clinic_name || '-'}\\n` : ''}` +\n        `${isClinic ? `👨‍⚕️ الطبيب: ${db.doctor_name || '-'}\\n` : ''}` +\n        `${queueLine}` +\n        `📝 الوصف: ${db.description || '-'}\\n` +\n        `💵 المبلغ: ${db.paid_amount ?? '-'}\\n` +\n        `🏦 اسم حساب المُرسل: ${db.sender_name || '-'}\\n` +\n        `📱 هاتف المُرسل: ${db.sender_phone || '-'}\\n\\n` +\n        `💳 حالة الدفع: ${paymentLabel}\\n` +\n        `🧾 حالة الفاتورة: ${invoiceLabel}\\n` +\n        `📦 حالة التسليم: ${db.fulfillment_status || 'Pending'}`\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2832,
+        1536
+      ],
+      "id": "9aee3fad-96df-4313-bca9-4c1d02a330f4",
+      "name": "Prepare Final Telegram Message"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n    pay.id AS payment_id,\n    pay.invoice_id,\n\n    i.invoice_number,\n    i.invoice_type,\n    i.description,\n    i.amount AS invoice_amount,\n\n    p.id AS patient_id,\n    p.full_name AS patient_name,\n    p.national_id,\n\n    pay.sender_name,\n    pay.sender_phone,\n    pay.amount AS paid_amount,\n\n    pay.status AS payment_status,\n    i.status AS invoice_status,\n    i.fulfillment_status,\n\n    i.booking_id,\n    b.queue_number,\n    b.booking_date,\n    c.name AS clinic_name,\n    d.full_name AS doctor_name\n\nFROM payments pay\nLEFT JOIN invoices i ON i.id = pay.invoice_id\nLEFT JOIN patients p ON p.id = pay.patient_id\nLEFT JOIN bookings b ON b.id = i.booking_id\nLEFT JOIN clinics c ON c.id = b.clinic_id\nLEFT JOIN doctors d ON d.id = b.doctor_id\nWHERE pay.id = {{ Number($json.payment_id) }}\nLIMIT 1;",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        2624,
+        1536
+      ],
+      "id": "a51ac9e4-9af5-46ba-8827-295df598663a",
+      "name": "Get Payment Details",
+      "credentials": {
+        "mySql": {
+          "id": "QFGnzi0HO3mMNlvx",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.telegram.org/bot8727229286:AAFNZ508wfUkrKYkNAOrznVsnpbTr_QZR_g/editMessageCaption",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "chat_id",
+              "value": "={{ $json.chat_id }}"
+            },
+            {
+              "name": "message_id",
+              "value": "={{ Number($json.message_id) }}"
+            },
+            {
+              "name": "caption",
+              "value": "={{ String($json.caption || '').slice(0, 1024) }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        3008,
+        1536
+      ],
+      "id": "a228a858-c42f-4dc5-baa7-b16428737134",
+      "name": "Edit Receipt Caption"
+    },
+    {
+      "parameters": {
+        "content": "## Staff API - Complete Fulfillment",
+        "height": 368,
+        "width": 1536,
+        "color": "#754867"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        880,
+        1872
+      ],
+      "typeVersion": 1,
+      "id": "23bc0e3a-a61b-4d2f-a4fd-ccb475008c6a",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "staff/complete-fulfillment",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        928,
+        2000
+      ],
+      "id": "74270009-722f-456e-8d62-ecb3445c802e",
+      "name": "Webhook Complete Fulfillment",
+      "webhookId": "8b17ccd7-ce9f-4e7b-a862-207edbe771d6"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n    id AS invoice_id,\n    invoice_number,\n    patient_id,\n    amount,\n    status,\n    fulfillment_status,\n    paid_at\nFROM invoices\nWHERE id = {{ Number($json.body.invoice_id) }}\nLIMIT 1;",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        1152,
+        2000
+      ],
+      "id": "3108bcf1-150f-4b76-90a9-d2f4e19456dd",
+      "name": "Validate Fulfillment",
+      "credentials": {
+        "mySql": {
+          "id": "QFGnzi0HO3mMNlvx",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "b3796e0d-84eb-4140-a4e5-154249e97514",
+              "leftValue": "={{ $json.status === 'Paid' }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1376,
+        2000
+      ],
+      "id": "03104e40-d862-4461-b2e9-6b6edc500102",
+      "name": "Is Paid?"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "UPDATE invoices\nSET\n    fulfillment_status = 'Completed'\nWHERE id = {{ Number($json.invoice_id) }}\n  AND status = 'Paid'\n  AND fulfillment_status = 'Pending';",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        1616,
+        1920
+      ],
+      "id": "acab5678-35c5-4ad2-9a41-0a551594548d",
+      "name": "Complete Fulfillment",
+      "alwaysOutputData": true,
+      "credentials": {
+        "mySql": {
+          "id": "QFGnzi0HO3mMNlvx",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n    id AS invoice_id,\n    invoice_number,\n    patient_id,\n    amount,\n    status,\n    fulfillment_status,\n    paid_at\nFROM invoices\nWHERE id = {{ Number($('Webhook Complete Fulfillment').first().json.body.invoice_id) }}\nLIMIT 1;",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        1840,
+        1920
+      ],
+      "id": "a38158f7-b0ad-49dc-bdd5-27b9e27fe56a",
+      "name": "Get Updated Invoice",
+      "credentials": {
+        "mySql": {
+          "id": "QFGnzi0HO3mMNlvx",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{\n  {\n    success: true,\n    message: \"تم تأكيد تسليم الدواء/الخدمة بنجاح\",\n    invoice: {\n      invoice_id: $json.invoice_id,\n      invoice_number: $json.invoice_number,\n      patient_id: $json.patient_id,\n      amount: $json.amount,\n      status: $json.status,\n      fulfillment_status: $json.fulfillment_status,\n      paid_at: $json.paid_at\n    }\n  }\n}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        2064,
+        1920
+      ],
+      "id": "7ab1452a-1299-4701-b727-0578bcb15f35",
+      "name": "Respond to Webhook Complete Fulfillment"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"success\": false,\n  \"message\": \"لا يمكن تأكيد التسليم لأن الفاتورة لم يتم دفعها بعد.\",\n  \"invoice\": {\n    \"invoice_id\": \"={{ $json.invoice_id }}\",\n    \"invoice_number\": \"={{ $json.invoice_number }}\",\n    \"status\": \"={{ $json.status }}\",\n    \"fulfillment_status\": \"={{ $json.fulfillment_status }}\"\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        1616,
+        2080
+      ],
+      "id": "99946f11-9350-41ea-a618-3207c007cb5f",
+      "name": "Respond - Invoice Not Paid"
+    },
+    {
+      "parameters": {
+        "content": "## Patient API - Queue Status",
+        "height": 288,
+        "width": 720,
+        "color": "#592626"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        880,
+        2720
+      ],
+      "typeVersion": 1,
+      "id": "3c6b275d-d101-41d4-827b-9cdbd4146af5",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "path": "patient/queue-status",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        912,
+        2800
+      ],
+      "id": "1d3d0947-3f7e-4e6f-b608-e78f2382dd54",
+      "name": "Webhook Queue Status",
+      "webhookId": "671a33be-a3f8-46e4-b4cc-896b41bdac23"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n    id AS patient_id,\n    full_name AS patient_name,\n    national_id\nFROM patients\nWHERE BINARY national_id =\n      BINARY '{{ $('Webhook Create Clinic Booking Invoice').first().json.body.national_id }}'\nLIMIT 1;",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        -816,
+        1328
+      ],
+      "id": "c96500f4-bb21-4745-85fa-723ec20b24a4",
+      "name": "Get Patient",
+      "credentials": {
+        "mySql": {
+          "id": "QFGnzi0HO3mMNlvx",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n    b.id AS booking_id,\n    b.queue_number AS your_queue_number,\n    b.status AS your_status,\n\n    c.id AS clinic_id,\n    c.name AS clinic_name,\n\n    d.id AS doctor_id,\n    d.full_name AS doctor_name,\n\n    b.booking_date,\n    b.shift_id,\n\n    COALESCE(\n        (\n            SELECT MAX(sb.queue_number)\n            FROM bookings sb\n            WHERE sb.booking_date = CURDATE()\n              AND sb.doctor_id = b.doctor_id\n              AND sb.shift_id = b.shift_id\n              AND sb.status = 'Serving'\n        ),\n        0\n    ) AS current_queue_number,\n\n    (\n        SELECT COUNT(*)\n        FROM bookings wb\n        INNER JOIN invoices wi\n            ON wi.booking_id = wb.id\n           AND wi.invoice_type = 'Clinic'\n           AND wi.status = 'Paid'\n        WHERE wb.booking_date = CURDATE()\n          AND wb.doctor_id = b.doctor_id\n          AND wb.shift_id = b.shift_id\n          AND wb.status = 'Waiting'\n          AND wb.queue_number < b.queue_number\n    ) AS people_ahead\n\nFROM bookings b\n\nINNER JOIN patients p\n    ON p.id = b.patient_id\n\nINNER JOIN clinics c\n    ON c.id = b.clinic_id\n\nLEFT JOIN doctors d\n    ON d.id = b.doctor_id\n\nINNER JOIN invoices i\n    ON i.booking_id = b.id\n   AND i.invoice_type = 'Clinic'\n   AND i.status = 'Paid'\n\nWHERE BINARY p.national_id =\n      BINARY '{{ $json.query.national_id }}'\n\n  AND b.booking_date = CURDATE()\n\n  AND b.status IN ('Waiting', 'Serving')\n\nORDER BY b.id DESC\n\nLIMIT 1;",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        1136,
+        2800
+      ],
+      "id": "b849f5eb-f987-41ce-b616-38a5bd9a94e8",
+      "name": "Get Queue Status",
+      "credentials": {
+        "mySql": {
+          "id": "QFGnzi0HO3mMNlvx",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n    b.id AS booking_id,\n    b.patient_id,\n    b.clinic_id,\n    b.doctor_id,\n    b.schedule_id,\n    b.schedule_override_id,\n    b.shift_id,\n    b.booking_date,\n    b.status\nFROM bookings b\nWHERE b.patient_id = $1\n  AND b.clinic_id = $2\n  AND b.booking_date = CURDATE()\nORDER BY b.id DESC\nLIMIT 1;",
+        "options": {
+          "queryReplacement": "={{ [ $('Prepare Booking Data').first().json.patient_id, $('Prepare Booking Data').first().json.clinic_id ] }}"
+        }
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        16,
+        1328
+      ],
+      "id": "16cdf651-e07a-4628-8c0c-9e5877e53a56",
+      "name": "Get Created Clinic Booking",
+      "credentials": {
+        "mySql": {
+          "id": "QFGnzi0HO3mMNlvx",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "INSERT INTO invoices (\n    invoice_number,\n    patient_id,\n    booking_id,\n    invoice_type,\n    description,\n    amount,\n    status,\n    fulfillment_status\n)\nVALUES (\n    $1,\n    $2,\n    $3,\n    'Clinic',\n    $4,\n    $5,\n    'Pending',\n    'Pending'\n);",
+        "options": {
+          "queryReplacement": "={{ [\n  $('Prepare Booking Data').first().json.invoice_number,\n  $('Prepare Booking Data').first().json.patient_id,\n  $('Get Created Clinic Booking').first().json.booking_id,\n  $('Prepare Booking Data').first().json.description,\n  $('Prepare Booking Data').first().json.consultation_fee\n] }}"
+        }
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        240,
+        1328
+      ],
+      "id": "537bc522-a2b5-47c5-8f88-b908956a16e4",
+      "name": "Create Clinic Invoice",
+      "credentials": {
+        "mySql": {
+          "id": "QFGnzi0HO3mMNlvx",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n    i.id,\n    i.invoice_number,\n    i.patient_id,\n    p.national_id,\n    p.full_name AS patient_name,\n    i.booking_id,\n    i.invoice_type,\n    i.description,\n    i.amount,\n    i.status,\n    i.fulfillment_status,\n    i.created_at,\n    b.clinic_id,\n    c.name AS clinic_name,\n    b.doctor_id,\n    d.full_name AS doctor_name\nFROM invoices i\nINNER JOIN patients p ON p.id = i.patient_id\nLEFT JOIN bookings b ON b.id = i.booking_id\nLEFT JOIN clinics c ON c.id = b.clinic_id\nLEFT JOIN doctors d ON d.id = b.doctor_id\nWHERE i.invoice_number = $1\nLIMIT 1;",
+        "options": {
+          "queryReplacement": "={{ [ $('Prepare Booking Data').first().json.invoice_number ] }}"
+        }
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        464,
+        1328
+      ],
+      "id": "42e1614c-3548-4e1e-89d9-0906cdef134c",
+      "name": "Get Created Clinic Invoice",
+      "credentials": {
+        "mySql": {
+          "id": "QFGnzi0HO3mMNlvx",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n    pay.id AS payment_id,\n    pay.invoice_id,\n    i.invoice_type,\n    i.status AS invoice_status,\n    i.booking_id,\n    b.status AS booking_status,\n    b.clinic_id,\n    b.doctor_id,\n    b.shift_id,\n    b.schedule_id,\n    b.schedule_override_id,\n    b.patient_id,\n    c.name AS clinic_name,\n    d.full_name AS doctor_name\nFROM payments pay\nINNER JOIN invoices i ON i.id = pay.invoice_id\nLEFT JOIN bookings b ON b.id = i.booking_id\nLEFT JOIN clinics c ON c.id = b.clinic_id\nLEFT JOIN doctors d ON d.id = b.doctor_id\nWHERE pay.id = $1\nLIMIT 1;",
+        "options": {
+          "queryReplacement": "={{ [ $('Parse Payment Action').first().json.payment_id ] }}"
+        }
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        1632,
+        1424
+      ],
+      "id": "266de9fe-2900-4c44-b650-1f97741a506d",
+      "name": "Get Approved Payment Context",
+      "credentials": {
+        "mySql": {
+          "id": "QFGnzi0HO3mMNlvx",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "1daffa37-bd2a-4609-bf5f-6d7089f4bbe5",
+              "leftValue": "={{ $json.invoice_type === 'Clinic' && $json.booking_id !== null && $json.booking_status === 'Cancelled' }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1792,
+        1520
+      ],
+      "id": "a80d6141-847d-4208-b1fa-2997ee10b027",
+      "name": "Is Clinic Booking Invoice?"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "UPDATE bookings\nSET\n    status = 'Waiting',\n    queue_number = $1\nWHERE id = $2\n  AND status = 'Cancelled'\n  AND booking_date = CURDATE();",
+        "options": {
+          "queryReplacement": "={{ [ $json.next_queue_number, $('Get Approved Payment Context').first().json.booking_id ] }}"
+        }
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        2224,
+        1424
+      ],
+      "id": "3fa108f8-baca-4799-8cf7-26e9f5fb2957",
+      "name": "Activate Clinic Booking",
+      "alwaysOutputData": true,
+      "credentials": {
+        "mySql": {
+          "id": "QFGnzi0HO3mMNlvx",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const invoices = $input.all().map(item => item.json);\n\nreturn [\n  {\n    json: {\n      success: true,\n      invoices\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1312,
+        608
+      ],
+      "id": "69e0b2ce-151d-4bd1-a021-6c634e3d4f16",
+      "name": "Prepare Pending Invoices Response"
+    },
+    {
+      "parameters": {
+        "jsCode": "const clinics = $input.all().map(item => item.json);\n\nreturn [\n  {\n    json: {\n      success: true,\n      clinics\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        496,
+        528
+      ],
+      "id": "e3075e76-93f2-45ef-8558-9684d8b87206",
+      "name": "Prepare Clinics Response"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        1328,
+        2800
+      ],
+      "id": "93b60369-2a45-4507-ac84-4c7ee4c0d4c6",
+      "name": "Respond to Webhook Queue Status"
+    },
+    {
+      "parameters": {
+        "content": "## Laboratory Orders",
+        "height": 288,
+        "width": 884,
+        "color": "#72714F"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1664,
+        2272
+      ],
+      "typeVersion": 1,
+      "id": "a5eadb87-351d-48cb-ad23-cd0c8d315382",
+      "name": "Sticky Note14"
+    },
+    {
+      "parameters": {
+        "path": "laboratory/orders",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        1696,
+        2352
+      ],
+      "id": "3d1c7039-f256-4b26-aef7-5a86ca455812",
+      "name": "Webhook Laboratory Orders",
+      "webhookId": "c7694b3e-b51c-4ce1-8eac-71c2f0e2772c"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n    i.id AS invoice_id,\n    i.invoice_number,\n    i.patient_id,\n    p.national_id,\n    p.full_name AS patient_name,\n    i.invoice_type,\n    i.description,\n    i.amount,\n    i.status,\n    i.fulfillment_status,\n    i.created_at,\n    i.paid_at\nFROM invoices i\nINNER JOIN patients p\n    ON p.id = i.patient_id\nWHERE i.invoice_type = 'Laboratory'\n  AND i.status IN ('Pending', 'Paid')\n  AND i.fulfillment_status = 'Pending'\nORDER BY i.created_at ASC;",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        1920,
+        2352
+      ],
+      "id": "93a7d6d2-cf56-4aba-8440-edff76d9544b",
+      "name": "Get Laboratory Orders",
+      "credentials": {
+        "mySql": {
+          "id": "QFGnzi0HO3mMNlvx",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        2368,
+        2352
+      ],
+      "id": "ae7abcf0-1e47-47f5-b4b1-fba6a4b651af",
+      "name": "Respond to Webhook Laboratory Orders"
+    },
+    {
+      "parameters": {
+        "jsCode": "const orders = $input.all().map(item => item.json);\n\nreturn [\n  {\n    json: {\n      success: true,\n      data: orders\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2144,
+        2352
+      ],
+      "id": "66e67bc7-5e2e-4282-8313-f59cb50fb38c",
+      "name": "Prepare Laboratory Response"
+    },
+    {
+      "parameters": {
+        "content": "## Radiology Orders\n",
+        "height": 240,
+        "width": 880,
+        "color": "#543B52"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1664,
+        2592
+      ],
+      "typeVersion": 1,
+      "id": "31c5547d-650a-4094-a204-1f23c0c54b86",
+      "name": "Sticky Note15"
+    },
+    {
+      "parameters": {
+        "path": "radiology/orders",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        1712,
+        2656
+      ],
+      "id": "cdd4a26e-65fc-44d6-9850-bf3b3ad5c065",
+      "name": "Webhook Radiology Orders",
+      "webhookId": "31fc217f-e51a-43b8-a5a0-1bde13de8685"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n    i.id AS invoice_id,\n    i.invoice_number,\n    i.patient_id,\n    p.national_id,\n    p.full_name AS patient_name,\n    i.invoice_type,\n    i.description,\n    i.amount,\n    i.status,\n    i.fulfillment_status,\n    i.created_at,\n    i.paid_at\nFROM invoices i\nINNER JOIN patients p\n    ON p.id = i.patient_id\nWHERE i.invoice_type = 'Radiology'\n  AND i.status IN ('Pending', 'Paid')\n  AND i.fulfillment_status = 'Pending'\nORDER BY i.created_at ASC;",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        1936,
+        2656
+      ],
+      "id": "9bae5bb6-9bbd-444e-8758-011cca882617",
+      "name": "Get Radiology Orders",
+      "credentials": {
+        "mySql": {
+          "id": "QFGnzi0HO3mMNlvx",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const orders = $input.all().map(item => item.json);\n\nreturn [\n  {\n    json: {\n      success: true,\n      data: orders\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2128,
+        2656
+      ],
+      "id": "02982998-c3fa-4ea6-a401-1c6066eb678b",
+      "name": "Prepare Radiology Response"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        2336,
+        2656
+      ],
+      "id": "6e191785-35c0-459c-b434-d1e4824e9c8d",
+      "name": "Respond to Webhook Radiology Orders"
+    },
+    {
+      "parameters": {
+        "content": "## Pharmacy Orders",
+        "height": 256,
+        "width": 864,
+        "color": "#364553"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1664,
+        2864
+      ],
+      "typeVersion": 1,
+      "id": "9d7c0722-cb13-477c-aed5-feda0efbd71b",
+      "name": "Sticky Note16"
+    },
+    {
+      "parameters": {
+        "path": "pharmacy/orders",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        1696,
+        2928
+      ],
+      "id": "6c52e780-2cdf-4ebd-8d24-8befe5d332c6",
+      "name": "Webhook Pharmacy Orders",
+      "webhookId": "d3abfb55-86c3-4007-9446-4f6d48b212dc"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n    i.id AS invoice_id,\n    i.invoice_number,\n    i.patient_id,\n    p.national_id,\n    p.full_name AS patient_name,\n    i.invoice_type,\n    i.description,\n    i.amount,\n    i.status,\n    i.fulfillment_status,\n    i.created_at,\n    i.paid_at\nFROM invoices i\nINNER JOIN patients p ON p.id = i.patient_id\nWHERE i.invoice_type = 'Pharmacy'\n  AND i.status IN ('Pending', 'Paid')\n  AND i.fulfillment_status = 'Pending'\nORDER BY i.created_at ASC;",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.5,
+      "position": [
+        1920,
+        2928
+      ],
+      "id": "bac996e1-f968-4903-9ccb-1a5a164b830b",
+      "name": "Get Pharmacy Orders",
+      "alwaysOutputData": true,
+      "credentials": {
+        "mySql": {
+          "id": "QFGnzi0HO3mMNlvx",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const orders = $input.all()\n  .map(item => item.json)\n  .filter(item => item.invoice_id != null);\n\nreturn [{\n  json: {\n    success: true,\n    data: orders\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2144,
+        2928
+      ],
+      "id": "ed72f455-4a3e-41d5-8f1f-ea335618e873",
+      "name": "Prepare Pharmacy Response"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        2368,
+        2928
+      ],
+      "id": "1ef0ade2-4113-4e8d-9157-94c4164690e4",
+      "name": "Respond to Webhook Pharmacy Orders"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Getting Patient Info Through ID": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook Getting Patient Info Through ID",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Getting Clinics": {
+      "main": [
+        [
+          {
+            "node": "Prepare Clinics Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Getting Patient Info Through ID": {
+      "main": [
+        [
+          {
+            "node": "Getting Patient Info Through ID",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Getting Clinics": {
+      "main": [
+        [
+          {
+            "node": "Getting Clinics",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Getting Current Doctor": {
+      "main": [
+        [
+          {
+            "node": "Getting Current Doctor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Getting Current Doctor": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook Getting Current Doctor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Current Doctor": {
+      "main": [
+        [
+          {
+            "node": "Get Patient",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Booking Data": {
+      "main": [
+        [
+          {
+            "node": "Create Booking",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Booking": {
+      "main": [
+        [
+          {
+            "node": "Get Created Clinic Booking",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Create Clinic Booking Invoice": {
+      "main": [
+        [
+          {
+            "node": "Get Current Doctor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Getting Queue For Doctor": {
+      "main": [
+        [
+          {
+            "node": "Getting Queue For Doctor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Getting Queue For Doctor": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook Getting Queue For Doctor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Call Next": {
+      "main": [
+        [
+          {
+            "node": "Get Current Serving",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Current Serving": {
+      "main": [
+        [
+          {
+            "node": "Is Patient Currently Serving?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is Patient Currently Serving?": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook Call Next",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get Next Waiting",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Next Waiting": {
+      "main": [
+        [
+          {
+            "node": "Is Waiting Patient Available?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is Waiting Patient Available?": {
+      "main": [
+        [
+          {
+            "node": "Set Patient To Serving",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Webhook No Waiting Patients",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Patient To Serving": {
+      "main": [
+        [
+          {
+            "node": "Get Called Patient",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Called Patient": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook Call Next Patient",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Complete Booking": {
+      "main": [
+        [
+          {
+            "node": "Get Completed Patient",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Complete Booking": {
+      "main": [
+        [
+          {
+            "node": "Complete Booking",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Completed Patient": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook Complete Booking",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Create Invoice": {
+      "main": [
+        [
+          {
+            "node": "Find Patient",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Find Patient": {
+      "main": [
+        [
+          {
+            "node": "Is Patient Found?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is Patient Found?": {
+      "main": [
+        [
+          {
+            "node": "Prepare Invoice Data",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Webhook Create Invoice: No Patient Found",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Invoice Data": {
+      "main": [
+        [
+          {
+            "node": "Is Amount Valid?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is Amount Valid?": {
+      "main": [
+        [
+          {
+            "node": "Create Invoice",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Webhook Create Invoice: Not A Valid Value",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Invoice": {
+      "main": [
+        [
+          {
+            "node": "Get Created Invoice",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Created Invoice": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook Create Invoice",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Getting Pending Invoices": {
+      "main": [
+        [
+          {
+            "node": "Get Pending Invoices",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Pending Invoices": {
+      "main": [
+        [
+          {
+            "node": "Prepare Pending Invoices Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Submit Payment": {
+      "main": [
+        [
+          {
+            "node": "Validate Payment Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validate Payment Request": {
+      "main": [
+        [
+          {
+            "node": "Is Payment Request Valid?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is Payment Request Valid?": {
+      "main": [
+        [
+          {
+            "node": "Prepare Payment Data",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Payment Data": {
+      "main": [
+        [
+          {
+            "node": "Attach Receipt Binary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read/Write Files from Disk": {
+      "main": [
+        [
+          {
+            "node": "Create Payment",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Payment": {
+      "main": [
+        [
+          {
+            "node": "Get Created Payment",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Created Payment": {
+      "main": [
+        [
+          {
+            "node": "Attach Receipt For Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Attach Receipt Binary": {
+      "main": [
+        [
+          {
+            "node": "Read/Write Files from Disk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram - Send Payment": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook Submit Payment",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Attach Receipt For Telegram": {
+      "main": [
+        [
+          {
+            "node": "Telegram - Send Payment",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Parse Payment Action",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is Approve?": {
+      "main": [
+        [
+          {
+            "node": "Approve Payment & Invoice",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Reject Payment",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Approve Payment & Invoice": {
+      "main": [
+        [
+          {
+            "node": "Get Approved Payment Context",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Payment Action": {
+      "main": [
+        [
+          {
+            "node": "Is Approve?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reject Payment": {
+      "main": [
+        [
+          {
+            "node": "Prepare Telegram Edit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Telegram Edit": {
+      "main": [
+        [
+          {
+            "node": "Get Payment Details",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Final Telegram Message": {
+      "main": [
+        [
+          {
+            "node": "Edit Receipt Caption",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Payment Details": {
+      "main": [
+        [
+          {
+            "node": "Prepare Final Telegram Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Receipt Caption": {
+      "main": [
+        [
+          {
+            "node": "Answer Callback Query",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Complete Fulfillment": {
+      "main": [
+        [
+          {
+            "node": "Validate Fulfillment",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validate Fulfillment": {
+      "main": [
+        [
+          {
+            "node": "Is Paid?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is Paid?": {
+      "main": [
+        [
+          {
+            "node": "Complete Fulfillment",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond - Invoice Not Paid",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Complete Fulfillment": {
+      "main": [
+        [
+          {
+            "node": "Get Updated Invoice",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Updated Invoice": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook Complete Fulfillment",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Queue Status": {
+      "main": [
+        [
+          {
+            "node": "Get Queue Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Patient": {
+      "main": [
+        [
+          {
+            "node": "Prepare Booking Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Getting Next Queue After Payment": {
+      "main": [
+        [
+          {
+            "node": "Activate Clinic Booking",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Created Clinic Booking": {
+      "main": [
+        [
+          {
+            "node": "Create Clinic Invoice",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Clinic Invoice": {
+      "main": [
+        [
+          {
+            "node": "Get Created Clinic Invoice",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Created Clinic Invoice": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook Create Clinic Booking Invoice",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Approved Payment Context": {
+      "main": [
+        [
+          {
+            "node": "Is Clinic Booking Invoice?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is Clinic Booking Invoice?": {
+      "main": [
+        [
+          {
+            "node": "Getting Next Queue After Payment",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Prepare Telegram Edit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Activate Clinic Booking": {
+      "main": [
+        [
+          {
+            "node": "Prepare Telegram Edit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Pending Invoices Response": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook Getting Pending Invoices",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Clinics Response": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook Getting Clinics",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Queue Status": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook Queue Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Laboratory Orders": {
+      "main": [
+        [
+          {
+            "node": "Get Laboratory Orders",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Laboratory Orders": {
+      "main": [
+        [
+          {
+            "node": "Prepare Laboratory Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Laboratory Response": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook Laboratory Orders",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Radiology Orders": {
+      "main": [
+        [
+          {
+            "node": "Get Radiology Orders",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Radiology Orders": {
+      "main": [
+        [
+          {
+            "node": "Prepare Radiology Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Radiology Response": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook Radiology Orders",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Pharmacy Orders": {
+      "main": [
+        [
+          {
+            "node": "Get Pharmacy Orders",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Pharmacy Orders": {
+      "main": [
+        [
+          {
+            "node": "Prepare Pharmacy Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Pharmacy Response": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook Pharmacy Orders",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "47bf7847-fa36-4758-bea7-1095d1f1fd38",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "26c35c2dadcf7194d5628240e62f220a2162c0d36748927ecf4e84a238e0b44f"
+  },
+  "nodeGroups": [],
+  "id": "cKqZ0sGrTNAQw8hc",
+  "tags": []
+}

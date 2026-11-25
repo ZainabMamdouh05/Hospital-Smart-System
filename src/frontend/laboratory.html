@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0d6efd">
+<title>مستشفى أصدقاء المريض الخيري | بوابة المختبر</title>
+<link rel="icon" type="image/png" href="assets/images/logo.png">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+<style>
+body{background:#f5f7fb;color:#182230;font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif}
+.header{background:linear-gradient(135deg,#0b5ed7,#0a58ca);color:#fff;padding:18px 0;box-shadow:0 8px 28px rgba(13,110,253,.18)}
+.brand{display:flex;align-items:center;gap:14px}.logo-wrap{width:54px;height:54px;background:#fff;border-radius:16px;display:flex;align-items:center;justify-content:center;overflow:hidden}.logo{width:45px;height:45px;object-fit:contain}
+.brand h1{font-size:1.15rem;margin:0;font-weight:800}.brand p{margin:3px 0 0;opacity:.82;font-size:.9rem}.staff-pill{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:8px 14px;font-size:.9rem}
+.main{padding:30px 0 50px}.panel{background:#fff;border:1px solid #e9edf4;border-radius:24px;padding:22px;box-shadow:0 14px 34px rgba(20,35,60,.06)}
+.eyebrow{font-size:.73rem;letter-spacing:.14em;color:#6d7a8b;font-weight:800}.hero h2{font-size:1.55rem;font-weight:800;margin:.4rem 0}.hero p{color:#697789;margin:0}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}.stat{background:#f7f9fc;border:1px solid #ebeff5;border-radius:18px;padding:16px}.label{font-size:.82rem;color:#778395}.value{font-size:1.45rem;font-weight:800;margin-top:4px}
+.invoice-card{background:#fff;border:1px solid #e3e8f0;border-radius:20px;padding:18px;box-shadow:0 8px 20px rgba(20,35,60,.04)}
+.amount{font-size:1.2rem;font-weight:900}.status-pending{background:#fff3cd;color:#664d03;border:1px solid #ffecb5}.status-paid{background:#d1e7dd;color:#0f5132;border:1px solid #badbcc}.status-completed{background:#e2e3e5;color:#41464b;border:1px solid #d3d6d8}
+.empty{padding:40px 18px;text-align:center;border:1px dashed #ccd4df;border-radius:18px;color:#738094;background:#fafbfd}
+.form-note{font-size:.83rem;color:#778395}.footer{text-align:center;color:#8994a3;padding:18px 0}
+@media(max-width:768px){.stats{grid-template-columns:1fr}.hero h2{font-size:1.35rem}}
+</style>
+</head>
+<body>
+<header class="header">
+<div class="container">
+<div class="d-flex align-items-center justify-content-between gap-3 flex-wrap">
+<div class="brand"><div class="logo-wrap"><img class="logo" src="assets/images/logo.png" alt="شعار المستشفى"></div><div><h1>مستشفى أصدقاء المريض الخيري</h1><p>بوابة المختبر الإلكترونية</p></div></div>
+<div class="d-flex align-items-center gap-2"><div class="staff-pill">🧪 المختبر</div><button id="refreshBtn" class="btn btn-light btn-sm" type="button">تحديث</button></div>
+</div>
+</div>
+</header>
+
+<main class="container main">
+<section class="panel hero">
+<div class="eyebrow">LABORATORY DASHBOARD</div>
+<h2>إدارة فواتير وطلبات المختبر</h2>
+<p>أنشئي فاتورة للمريض، ثم تابعي حالة الدفع، وبعد اعتماد الدفع نفّذي الفحص أو سلّمي الخدمة.</p>
+<div class="stats">
+<div class="stat"><div class="label">بانتظار الدفع</div><div id="pendingPaymentCount" class="value">0</div></div>
+<div class="stat"><div class="label">تم الدفع وجاهز للتنفيذ</div><div id="readyCount" class="value">0</div></div>
+<div class="stat"><div class="label">طلبات ظاهرة</div><div id="totalCount" class="value">0</div></div>
+</div>
+</section>
+
+<div id="alertBox" class="alert d-none mt-4" role="alert"></div>
+
+<section class="panel mt-4">
+<div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-3">
+<div><div class="eyebrow">CREATE INVOICE</div><h3 class="h5 fw-bold mb-1 mt-1">إنشاء فاتورة مختبر</h3><div class="form-note">ستظهر الفاتورة مباشرة لدى المريض بحالة انتظار الدفع.</div></div>
+</div>
+
+<form id="invoiceForm">
+<div class="row g-3">
+<div class="col-md-4">
+<label class="form-label fw-semibold" for="nationalId">رقم هوية المريض</label>
+<input id="nationalId" class="form-control form-control-lg" inputmode="numeric" maxlength="9" placeholder="مثال: 123456789" required>
+</div>
+<div class="col-md-4">
+<label class="form-label fw-semibold" for="description">نوع / وصف الفحص</label>
+<input id="description" class="form-control form-control-lg" placeholder="مثال: تحليل دم شامل" required>
+</div>
+<div class="col-md-4">
+<label class="form-label fw-semibold" for="amount">المبلغ (شيكل)</label>
+<input id="amount" class="form-control form-control-lg" type="number" min="0.01" step="0.01" placeholder="30" required>
+</div>
+<div class="col-12">
+<button id="createInvoiceBtn" class="btn btn-primary btn-lg" type="submit">إنشاء الفاتورة</button>
+</div>
+</div>
+</form>
+</section>
+
+<section class="panel mt-4">
+<div class="d-flex justify-content-between align-items-center gap-3 flex-wrap mb-3">
+<div><div class="eyebrow">INVOICES</div><h3 class="h5 fw-bold mb-0 mt-1">فواتير المختبر</h3></div>
+<div id="loading" class="d-none"><div class="spinner-border spinner-border-sm text-primary"></div></div>
+</div>
+
+<div id="empty" class="empty d-none">لا توجد فواتير مختبر حالية.</div>
+<div id="orders" class="d-grid gap-3"></div>
+</section>
+
+<footer class="footer">نظام حجز وخدمات المرضى الإلكتروني</footer>
+</main>
+
+<script src="assets/js/laboratory.js"></script>
+</body>
+</html>

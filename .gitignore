@@ -1,0 +1,14 @@
+.env
+.env.*
+!.env.example
+
+node_modules/
+vendor/
+
+*.log
+.DS_Store
+Thumbs.db
+
+n8n_data/
+database_data/
+db-backup/

@@ -1,0 +1,11 @@
+.git
+.gitignore
+.env
+.env.example
+
+src/database/
+src/workflows/
+
+docs/
+README.md
+docker-compose.yml

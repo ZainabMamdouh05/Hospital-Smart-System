@@ -1,0 +1,40 @@
+services:
+  frontend:
+    build: .
+    container_name: hospital-frontend
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+
+  database:
+    image: mariadb:11.4
+    container_name: hospital-database
+    environment:
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MARIADB_DATABASE: hospital_system
+      MARIADB_USER: hospital_app
+      MARIADB_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - hospital_db_data_fresh:/var/lib/mysql
+      - ./src/database/hospital_system (2).sql:/docker-entrypoint-initdb.d/01-hospital.sql:ro
+    restart: unless-stopped
+
+  n8n:
+    image: n8nio/n8n:2.36.9
+    container_name: hospital-n8n
+    ports:
+      - "5678:5678"
+    environment:
+      N8N_HOST: localhost
+      N8N_PORT: 5678
+      N8N_PROTOCOL: http
+      WEBHOOK_URL: https://sprang-hesitancy-unwanted.ngrok-free.dev/
+      GENERIC_TIMEZONE: Asia/Gaza
+      TZ: Asia/Gaza
+    volumes:
+      - n8n_data:/home/node/.n8n
+    restart: unless-stopped
+
+volumes:
+  hospital_db_data_fresh:
+  n8n_data:
