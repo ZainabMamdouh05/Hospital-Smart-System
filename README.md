@@ -104,7 +104,7 @@ Hospital-Smart-System/
 
 │   ├── database/
 
-│   │   └── hospital\_system (2).sql
+│   │   └── hospital\\\_system (2).sql
 
 │   ├── frontend/
 
@@ -184,9 +184,9 @@ Edit `.env` and set your own database passwords:
 
 ```env
 
-DB\_ROOT\_PASSWORD=your\_root\_password
+DB\\\_ROOT\\\_PASSWORD=your\\\_root\\\_password
 
-DB\_PASSWORD=your\_database\_password
+DB\\\_PASSWORD=your\\\_database\\\_password
 
 ```
 
@@ -264,7 +264,7 @@ The MariaDB database is named:
 
 
 
-`hospital\_system`
+`hospital\\\_system`
 
 
 
@@ -272,7 +272,7 @@ The application database user is:
 
 
 
-`hospital\_app`
+`hospital\\\_app`
 
 
 
@@ -288,11 +288,11 @@ Within the Docker network, n8n connects to MariaDB using:
 
 | Port | `3306` |
 
-| Database | `hospital\_system` |
+| Database | `hospital\\\_system` |
 
-| User | `hospital\_app` |
+| User | `hospital\\\_app` |
 
-| Password | `DB\_PASSWORD` from `.env` |
+| Password | `DB\\\_PASSWORD` from `.env` |
 
 
 
@@ -306,7 +306,7 @@ To access the database from the terminal:
 
 ```bash
 
-docker compose exec database mariadb -u hospital\_app -p hospital\_system
+docker compose exec database mariadb -u hospital\\\_app -p hospital\\\_system
 
 ```
 
@@ -418,7 +418,7 @@ The following deployment checks have been completed:
 
 \- The database contains the expected tables.
 
-\- The `hospital\_app` user can connect to the database.
+\- The `hospital\\\_app` user can connect to the database.
 
 \- n8n is running and its MariaDB credential was successfully tested.
 
@@ -439,6 +439,102 @@ The following integration checks still require completion:
 
 
 These items are being reviewed after the Docker deployment.
+
+
+
+
+
+\## Receipt Storage in Docker
+
+
+
+The n8n workflow stores uploaded payment receipts inside the Docker environment.
+
+
+
+The receipt storage directory is mapped from the host machine to the n8n container using a Docker bind mount:
+
+
+
+```yaml
+
+\- ./n8n-data/receipts:/home/node/.n8n-files/receipts
+
+```
+
+
+
+The host directory is:
+
+
+
+`n8n-data/receipts/`
+
+
+
+The directory inside the n8n container is:
+
+
+
+`/home/node/.n8n-files/receipts/`
+
+
+
+The workflow uses the Linux container path when creating and saving receipt files.
+
+
+
+This configuration ensures that uploaded receipts are stored persistently on the host machine and remain available after container restarts.
+
+
+
+The `n8n-data/` directory is excluded from Git using `.gitignore` to prevent payment receipts from being uploaded to GitHub.
+
+
+
+\### Verify Receipt Storage
+
+
+
+To inspect receipt files inside the n8n container:
+
+
+
+```bash
+
+docker compose exec n8n sh -c "find /home/node/.n8n-files/receipts -maxdepth 1 -type f -print"
+
+```
+
+
+
+\## Deployment Testing Results
+
+
+
+The following end-to-end operations were successfully tested:
+
+
+
+\- Patient login through the frontend.
+
+\- Clinic booking.
+
+\- Payment receipt submission.
+
+\- Receipt file storage inside the Docker-mounted directory.
+
+\- Telegram payment notification.
+
+\- Payment approval through Telegram.
+
+\- MariaDB database connectivity.
+
+
+
+The frontend, MariaDB, and n8n services were also verified running together through Docker Compose.
+
+
 
 
 
