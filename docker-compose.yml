@@ -1,3 +1,4 @@
+
 services:
   frontend:
     build: .
@@ -16,7 +17,7 @@ services:
       MARIADB_PASSWORD: ${DB_PASSWORD}
     volumes:
       - hospital_db_data_fresh:/var/lib/mysql
-      - ./src/database/hospital_system (2).sql:/docker-entrypoint-initdb.d/01-hospital.sql:ro
+      - "./src/database/hospital_system (2).sql:/docker-entrypoint-initdb.d/01-hospital.sql:ro"
     restart: unless-stopped
 
   n8n:
@@ -29,10 +30,12 @@ services:
       N8N_PORT: 5678
       N8N_PROTOCOL: http
       WEBHOOK_URL: https://sprang-hesitancy-unwanted.ngrok-free.dev/
+      N8N_PROXY_HOPS: 1
       GENERIC_TIMEZONE: Asia/Gaza
       TZ: Asia/Gaza
     volumes:
       - n8n_data:/home/node/.n8n
+      - ./n8n-data/receipts:/home/node/.n8n-files/receipts
     restart: unless-stopped
 
 volumes:
