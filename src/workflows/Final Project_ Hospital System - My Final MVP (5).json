@@ -14,7 +14,7 @@
         0
       ],
       "typeVersion": 1,
-      "id": "2505760c-96fb-42b9-b3ef-568831a7b127",
+      "id": "0ffdd1d9-552b-4e29-bb29-e4a13abe5b2b",
       "name": "Sticky Note"
     },
     {
@@ -30,7 +30,7 @@
         416
       ],
       "typeVersion": 1,
-      "id": "d7617fdf-cdcd-4aea-bdb4-adf9145a3e6e",
+      "id": "4441b9f3-6d73-4a4d-95de-241cf753f5b1",
       "name": "Sticky Note1"
     },
     {
@@ -45,11 +45,11 @@
         304,
         112
       ],
-      "id": "e0c432a2-efe7-49a5-9b8e-8de8972df9d4",
+      "id": "9f484e89-d718-4617-be85-2d4cfecc91da",
       "name": "Getting Patient Info Through ID",
       "credentials": {
         "mySql": {
-          "id": "QFGnzi0HO3mMNlvx",
+          "id": "4dzaERnbUShF322a",
           "name": "MySQL account"
         }
       }
@@ -66,11 +66,11 @@
         304,
         528
       ],
-      "id": "154f69cf-247c-459f-8f0c-0e8d948e0794",
+      "id": "3d5397b3-3665-45bc-85a5-7013c9ac7ebe",
       "name": "Getting Clinics",
       "credentials": {
         "mySql": {
-          "id": "QFGnzi0HO3mMNlvx",
+          "id": "4dzaERnbUShF322a",
           "name": "MySQL account"
         }
       }
@@ -90,7 +90,7 @@
         96,
         112
       ],
-      "id": "07b83cee-d94d-43f2-88d0-a74ca889583a",
+      "id": "56d2de12-eb97-4679-b29b-d5a7f6dfc901",
       "name": "Webhook Getting Patient Info Through ID",
       "webhookId": "119b6620-8a2a-4bb8-b204-c9c2971c9aa2"
     },
@@ -104,7 +104,7 @@
         528,
         112
       ],
-      "id": "52c6e602-dff8-4149-a6e0-102bb20940e9",
+      "id": "2db44a4a-6f2c-454f-b0b7-7a171d053cfd",
       "name": "Respond to Webhook Getting Patient Info Through ID"
     },
     {
@@ -121,7 +121,7 @@
         96,
         528
       ],
-      "id": "d6bce396-7945-4a64-8aa0-f7a3dac4cfb0",
+      "id": "9a1b130f-aee4-4ff7-9900-de8414ee6f04",
       "name": "Webhook Getting Clinics",
       "webhookId": "c2fe09dd-99a3-4051-adcc-bf5bab50410a"
     },
@@ -135,7 +135,7 @@
         688,
         528
       ],
-      "id": "74803307-1959-4d3d-bd17-58d319b6b8ac",
+      "id": "edc86a8a-0d40-477e-afce-5201c51a5ced",
       "name": "Respond to Webhook Getting Clinics"
     },
     {
@@ -151,7 +151,7 @@
         800
       ],
       "typeVersion": 1,
-      "id": "203022a9-5211-43c6-8867-56e32763cc42",
+      "id": "85964a56-7da8-42cf-b88a-1dc497981a7e",
       "name": "Sticky Note2"
     },
     {
@@ -167,7 +167,7 @@
         1408
       ],
       "typeVersion": 1,
-      "id": "8f4ea3e3-f133-4758-b350-f3c33bcf582e",
+      "id": "5ae0cf04-eb27-4321-ae4f-3019df696f73",
       "name": "Sticky Note5"
     },
     {
@@ -183,7 +183,7 @@
         1248
       ],
       "typeVersion": 1,
-      "id": "45368a6d-efa5-4d19-9645-bcb03532dbee",
+      "id": "772c5be4-6222-41af-97c2-37b5089ff712",
       "name": "Sticky Note6"
     },
     {
@@ -199,7 +199,7 @@
         2272
       ],
       "typeVersion": 1,
-      "id": "bf9bcf4f-2f48-432e-8447-405925cf65f3",
+      "id": "65ccc534-59c9-442c-9b8e-eca170ea9256",
       "name": "Sticky Note7"
     },
     {
@@ -216,7 +216,7 @@
         128,
         912
       ],
-      "id": "58b9448e-f74b-4853-8d13-ae522da1e874",
+      "id": "3c85cf84-e835-4805-81d1-fc9f70ba82db",
       "name": "Webhook Getting Current Doctor",
       "webhookId": "c2fe09dd-99a3-4051-adcc-bf5bab50410a"
     },
@@ -234,11 +234,11 @@
         336,
         912
       ],
-      "id": "02aa3de5-0e19-40d4-84c0-cfe8284f5b88",
+      "id": "ca8234a7-0659-478a-9b11-6554373f842b",
       "name": "Getting Current Doctor",
       "credentials": {
         "mySql": {
-          "id": "QFGnzi0HO3mMNlvx",
+          "id": "4dzaERnbUShF322a",
           "name": "MySQL account"
         }
       }
@@ -253,7 +253,7 @@
         560,
         912
       ],
-      "id": "dfeea536-0201-43fc-a9e2-181ff9ab9fe5",
+      "id": "a9393b3b-c8f0-4677-961d-d73dfa726b7b",
       "name": "Respond to Webhook Getting Current Doctor"
     },
     {
@@ -270,11 +270,11 @@
         2000,
         1424
       ],
-      "id": "2f6e1ab6-1995-49a4-8561-3f35a8389d14",
+      "id": "b77c4f08-dda9-4051-aac0-2d421566854f",
       "name": "Getting Next Queue After Payment",
       "credentials": {
         "mySql": {
-          "id": "QFGnzi0HO3mMNlvx",
+          "id": "4dzaERnbUShF322a",
           "name": "MySQL account"
         }
       }
@@ -293,11 +293,11 @@
         -1040,
         1328
       ],
-      "id": "2e95a8b1-f26d-4c5e-860a-c0b4f5679349",
+      "id": "c05affae-8e0e-4c62-8a1f-6721f1be42b7",
       "name": "Get Current Doctor",
       "credentials": {
         "mySql": {
-          "id": "QFGnzi0HO3mMNlvx",
+          "id": "4dzaERnbUShF322a",
           "name": "MySQL account"
         }
       }
@@ -400,7 +400,7 @@
         -432,
         1328
       ],
-      "id": "1c44f1f9-aefb-43c4-8b09-1890e8905d5a",
+      "id": "05cb0537-a2f5-4a03-bf2c-102771e9a3cd",
       "name": "Prepare Booking Data"
     },
     {
@@ -417,11 +417,11 @@
         -208,
         1328
       ],
-      "id": "8537cd65-3299-4a59-ba7b-1c8878a23dc0",
+      "id": "db043ef0-8e84-43f3-9272-6e4593bd96fd",
       "name": "Create Booking",
       "credentials": {
         "mySql": {
-          "id": "QFGnzi0HO3mMNlvx",
+          "id": "4dzaERnbUShF322a",
           "name": "MySQL account"
         }
       }
@@ -438,7 +438,7 @@
         688,
         1328
       ],
-      "id": "6dfb1b22-d23c-4af4-b6b9-2ad2c38bb650",
+      "id": "8d36e704-7569-40e2-8034-2dea66de04aa",
       "name": "Respond to Webhook Create Clinic Booking Invoice"
     },
     {
@@ -456,7 +456,7 @@
         -1216,
         1328
       ],
-      "id": "8cad8855-01ae-4775-9a99-810b936db222",
+      "id": "1214364b-0cd1-48e4-abbe-ce500bce2aec",
       "name": "Webhook Create Clinic Booking Invoice",
       "webhookId": "c2fe09dd-99a3-4051-adcc-bf5bab50410a"
     },
@@ -473,7 +473,7 @@
         1584
       ],
       "typeVersion": 1,
-      "id": "ae3285de-6e60-46de-960c-cacbbc997aa5",
+      "id": "fcefcf00-24ea-4afe-ab0b-37276ccc3cab",
       "name": "Sticky Note8"
     },
     {
@@ -488,7 +488,7 @@
         -48,
         1680
       ],
-      "id": "a8fa223e-e72c-43e5-8ea6-86532e54e17c",
+      "id": "55a5008e-3d0c-4aee-8f6e-352fe542f1a1",
       "name": "Webhook Getting Queue For Doctor",
       "webhookId": "c2fe09dd-99a3-4051-adcc-bf5bab50410a"
     },
@@ -506,11 +506,11 @@
         160,
         1680
       ],
-      "id": "63b09a1c-daaa-49ca-8f4c-ad135607ffd0",
+      "id": "b72bc58d-9ac7-43e2-b89d-59ddbb744664",
       "name": "Getting Queue For Doctor",
       "credentials": {
         "mySql": {
-          "id": "QFGnzi0HO3mMNlvx",
+          "id": "4dzaERnbUShF322a",
           "name": "MySQL account"
         }
       }
@@ -525,7 +525,7 @@
         384,
         1680
       ],
-      "id": "3d66442c-b062-4ad8-976a-b1a0f2b8fd80",
+      "id": "d0a79f52-36f6-4553-b600-08a4de6180a0",
       "name": "Respond to Webhook Getting Queue For Doctor"
     },
     {
@@ -541,7 +541,7 @@
         1968
       ],
       "typeVersion": 1,
-      "id": "94a74e36-9451-4f78-b075-d359578112ec",
+      "id": "9e27c2fe-76bb-4624-bd8c-d2b65f5d0bac",
       "name": "Sticky Note9"
     },
     {
@@ -557,7 +557,7 @@
         -992,
         2096
       ],
-      "id": "9e7681e5-be6f-407b-84fe-c0995d1cbf91",
+      "id": "86283eae-0140-4a0b-9466-14a9c7f50b9c",
       "name": "Webhook Call Next",
       "webhookId": "c2fe09dd-99a3-4051-adcc-bf5bab50410a"
     },
@@ -575,11 +575,11 @@
         -768,
         2096
       ],
-      "id": "98e9850b-acd6-4d3b-8ef8-a0162a445f96",
+      "id": "cf33373b-4705-4f0e-9def-6c27b527954b",
       "name": "Get Current Serving",
       "credentials": {
         "mySql": {
-          "id": "QFGnzi0HO3mMNlvx",
+          "id": "4dzaERnbUShF322a",
           "name": "MySQL account"
         }
       }
@@ -614,7 +614,7 @@
         -544,
         2096
       ],
-      "id": "e8598a67-6d54-47d2-a6a4-08ab9bb1955b",
+      "id": "1500d3cc-540e-4497-9664-97faff177817",
       "name": "Is Patient Currently Serving?"
     },
     {
@@ -631,11 +631,11 @@
         -320,
         2192
       ],
-      "id": "555b8674-ee63-4ade-b981-c6435c628233",
+      "id": "120a1d25-f335-42a4-bd41-1b3eeef7160d",
       "name": "Get Next Waiting",
       "credentials": {
         "mySql": {
-          "id": "QFGnzi0HO3mMNlvx",
+          "id": "4dzaERnbUShF322a",
           "name": "MySQL account"
         }
       }
@@ -671,7 +671,7 @@
         -96,
         2192
       ],
-      "id": "a7465c30-9144-48a5-a43d-8d3533d82388",
+      "id": "3881cc66-e9e7-4ca1-9e95-4ffbe4a0cba4",
       "name": "Is Waiting Patient Available?"
     },
     {
@@ -688,11 +688,11 @@
         128,
         2096
       ],
-      "id": "410efd55-3b44-4ab9-9c74-5e8c30a6c20e",
+      "id": "00cfceb2-8f95-417e-8bc3-8d44bd8e5d6f",
       "name": "Set Patient To Serving",
       "credentials": {
         "mySql": {
-          "id": "QFGnzi0HO3mMNlvx",
+          "id": "4dzaERnbUShF322a",
           "name": "MySQL account"
         }
       }
@@ -711,11 +711,11 @@
         352,
         2096
       ],
-      "id": "814e4bb0-4756-41e3-98f2-95ac515c2c40",
+      "id": "4167c620-02af-4f89-a927-f1f242b19b17",
       "name": "Get Called Patient",
       "credentials": {
         "mySql": {
-          "id": "QFGnzi0HO3mMNlvx",
+          "id": "4dzaERnbUShF322a",
           "name": "MySQL account"
         }
       }
@@ -730,7 +730,7 @@
         -320,
         2000
       ],
-      "id": "01a08cd7-5338-4638-8e58-197329088cac",
+      "id": "63475248-b58e-4f96-85c5-a20bfbde4c32",
       "name": "Respond to Webhook Call Next"
     },
     {
@@ -745,7 +745,7 @@
         128,
         2288
       ],
-      "id": "ae3de89e-8d9f-4fc3-ae99-c9f2ef95a043",
+      "id": "76ad34cb-d091-4d8e-8ce5-890f9c8bc45f",
       "name": "Respond to Webhook No Waiting Patients"
     },
     {
@@ -760,7 +760,7 @@
         576,
         2096
       ],
-      "id": "fd9c8dd7-9237-47b5-8735-e7bf6b94c985",
+      "id": "d3ae9eab-afaa-45d2-908c-0d075600354e",
       "name": "Respond to Webhook Call Next Patient"
     },
     {
@@ -776,7 +776,7 @@
         2496
       ],
       "typeVersion": 1,
-      "id": "a2d439d6-974e-4ea5-b661-a33d0e6c198e",
+      "id": "e982df9c-1765-4bbc-b268-31774e3f0e55",
       "name": "Sticky Note10"
     },
     {
@@ -793,11 +793,11 @@
         -32,
         2624
       ],
-      "id": "00b6bbfe-2bbc-4e3d-b57b-78a416904e32",
+      "id": "2025d8c2-aced-404a-af24-d932931aa7c2",
       "name": "Complete Booking",
       "credentials": {
         "mySql": {
-          "id": "QFGnzi0HO3mMNlvx",
+          "id": "4dzaERnbUShF322a",
           "name": "MySQL account"
         }
       }
@@ -815,7 +815,7 @@
         -240,
         2624
       ],
-      "id": "56dae449-92a9-4f6d-b93a-c20adbee49c8",
+      "id": "32a3bc9f-8645-48c6-9a0a-30b2b2f56cc8",
       "name": "Webhook Complete Booking",
       "webhookId": "c2fe09dd-99a3-4051-adcc-bf5bab50410a"
     },
@@ -831,7 +831,7 @@
         576,
         2624
       ],
-      "id": "e437721b-a0bd-42f5-be55-96bbba736549",
+      "id": "146b1ec4-352a-47e2-8eee-817a6f315a11",
       "name": "Respond to Webhook Complete Booking"
     },
     {
@@ -848,11 +848,11 @@
         224,
         2624
       ],
-      "id": "0bdecb09-3855-4d92-9e6d-a88e161589b6",
+      "id": "b373c2e2-e1a4-4572-b759-551329e68b4b",
       "name": "Get Completed Patient",
       "credentials": {
         "mySql": {
-          "id": "QFGnzi0HO3mMNlvx",
+          "id": "4dzaERnbUShF322a",
           "name": "MySQL account"
         }
       }
@@ -870,7 +870,7 @@
         0
       ],
       "typeVersion": 1,
-      "id": "9716b7d2-3214-4fc3-a13a-d2b213a2a837",
+      "id": "bbf478ec-b544-43ba-b5a4-1d7cb6d5cf29",
       "name": "Sticky Note11"
     },
     {
@@ -886,7 +886,7 @@
         928,
         176
       ],
-      "id": "9519ca2c-15e9-4779-8186-b34efff15605",
+      "id": "7810fe56-159e-40f0-b45a-17860c552380",
       "name": "Webhook Create Invoice",
       "webhookId": "119b6620-8a2a-4bb8-b204-c9c2971c9aa2"
     },
@@ -904,11 +904,11 @@
         1120,
         176
       ],
-      "id": "655d4d90-a5c9-4f22-9388-088f679eb036",
+      "id": "541b3f11-41b0-4dfb-823f-235768aa67ba",
       "name": "Find Patient",
       "credentials": {
         "mySql": {
-          "id": "QFGnzi0HO3mMNlvx",
+          "id": "4dzaERnbUShF322a",
           "name": "MySQL account"
         }
       }
@@ -944,7 +944,7 @@
         1312,
         176
       ],
-      "id": "31fde1c2-c234-4625-915d-323a9bd1d17e",
+      "id": "ca1a3cb0-256b-499c-8d0f-7b3cd7f5d980",
       "name": "Is Patient Found?"
     },
     {
@@ -1003,7 +1003,7 @@
         1472,
         32
       ],
-      "id": "e4e491b1-e427-4068-a12f-2d6c4f198585",
+      "id": "7da1fa68-9b35-4d98-8f44-fc5308028e1d",
       "name": "Prepare Invoice Data"
     },
     {
@@ -1036,7 +1036,7 @@
         1616,
         176
       ],
-      "id": "b4f0432e-6841-4cef-9d5f-447546f6ccc5",
+      "id": "497e58ef-dfd3-4ed0-8d2d-21f3f3544ce1",
       "name": "Is Amount Valid?"
     },
     {
@@ -1053,11 +1053,11 @@
         1760,
         32
       ],
-      "id": "ff909ba0-8c2e-4a7e-b719-9088f72cd5eb",
+      "id": "74014981-9111-46a1-91a8-35da77cb7aba",
       "name": "Create Invoice",
       "credentials": {
         "mySql": {
-          "id": "QFGnzi0HO3mMNlvx",
+          "id": "4dzaERnbUShF322a",
           "name": "MySQL account"
         }
       }
@@ -1076,11 +1076,11 @@
         1920,
         32
       ],
-      "id": "4b125993-a1dd-48d6-811e-708566692328",
+      "id": "29328080-f6e8-4c5c-ab7e-2eb4ab7c85f7",
       "name": "Get Created Invoice",
       "credentials": {
         "mySql": {
-          "id": "QFGnzi0HO3mMNlvx",
+          "id": "4dzaERnbUShF322a",
           "name": "MySQL account"
         }
       }
@@ -1097,7 +1097,7 @@
         2096,
         32
       ],
-      "id": "525630dd-bf80-4e10-a7ac-2fc54d471fd6",
+      "id": "8b66ef15-884d-4cfc-80c9-d0b9f670d0a6",
       "name": "Respond to Webhook Create Invoice"
     },
     {
@@ -1112,7 +1112,7 @@
         1472,
         320
       ],
-      "id": "762ce830-c3a5-4c97-a90d-78a32e24e3c2",
+      "id": "901c6fc1-6e14-4d3f-846c-74d05d6623d8",
       "name": "Respond to Webhook Create Invoice: No Patient Found"
     },
     {
@@ -1127,7 +1127,7 @@
         1760,
         320
       ],
-      "id": "9f404351-9cf1-488d-8ed4-d4e30b38faf3",
+      "id": "572d3df5-c034-4126-8154-5142ff440e11",
       "name": "Respond to Webhook Create Invoice: Not A Valid Value"
     },
     {
@@ -1143,7 +1143,7 @@
         528
       ],
       "typeVersion": 1,
-      "id": "b2d05123-fe16-4cc3-a7ac-1bfc59fd7c08",
+      "id": "a772d117-7da5-4aa2-83ad-cf0916499daa",
       "name": "Sticky Note12"
     },
     {
@@ -1160,7 +1160,7 @@
         944,
         608
       ],
-      "id": "1a49aa73-976f-4f53-af26-17b9f4cb0f7d",
+      "id": "38f0208c-c024-4ee0-a681-c09dc8073e4b",
       "name": "Webhook Getting Pending Invoices",
       "webhookId": "119b6620-8a2a-4bb8-b204-c9c2971c9aa2"
     },
@@ -1178,11 +1178,11 @@
         1152,
         608
       ],
-      "id": "70aef36e-6ed6-46ff-9350-c7cd8feed1da",
+      "id": "1c888e50-83bb-4e79-99a7-8318be612e3e",
       "name": "Get Pending Invoices",
       "credentials": {
         "mySql": {
-          "id": "QFGnzi0HO3mMNlvx",
+          "id": "4dzaERnbUShF322a",
           "name": "MySQL account"
         }
       }
@@ -1197,7 +1197,7 @@
         1520,
         608
       ],
-      "id": "1fb3ff29-2645-4501-b94e-7b780d0be522",
+      "id": "515daa3f-84b7-45b3-ba93-494322bcaff8",
       "name": "Respond to Webhook Getting Pending Invoices"
     },
     {
@@ -1213,7 +1213,7 @@
         896
       ],
       "typeVersion": 1,
-      "id": "6af4ab0c-c24a-4f3a-b783-1d7d8bc38c81",
+      "id": "a49be7a5-a42d-44d9-b806-a022d05e7f5b",
       "name": "Sticky Note13"
     },
     {
@@ -1231,7 +1231,7 @@
         912,
         1056
       ],
-      "id": "28dc5a54-3ea6-48b3-bc71-c3cece312e19",
+      "id": "df031284-f2b2-4814-9382-d44ece3dbfad",
       "name": "Webhook Submit Payment",
       "webhookId": "119b6620-8a2a-4bb8-b204-c9c2971c9aa2"
     },
@@ -1249,11 +1249,11 @@
         1120,
         1056
       ],
-      "id": "0cb80dda-2a5d-441e-a0d8-0f16c2175db8",
+      "id": "c59ec2f4-de1d-4484-8b68-3639c8441daf",
       "name": "Validate Payment Request",
       "credentials": {
         "mySql": {
-          "id": "QFGnzi0HO3mMNlvx",
+          "id": "4dzaERnbUShF322a",
           "name": "MySQL account"
         }
       }
@@ -1289,7 +1289,7 @@
         1344,
         1056
       ],
-      "id": "a0d4a68e-1ae6-4a7f-8b4d-fcbd0b8c0222",
+      "id": "9b2e45a0-d0f3-426a-931e-80cf2bf8dd45",
       "name": "Is Payment Request Valid?"
     },
     {
@@ -1304,7 +1304,7 @@
         1488,
         1168
       ],
-      "id": "c2ae2c1a-5d90-4200-993c-573d1e3e4c90",
+      "id": "4c71df9b-b9d8-434e-a718-8703bd8206dd",
       "name": "Respond to Webhook"
     },
     {
@@ -1344,7 +1344,7 @@
             {
               "id": "91ffbd1d-d517-4ba9-9c9b-584e09fb6020",
               "name": "receipt_path",
-              "value": "={{\n  'C:/n8n-data/receipts/payment_' +\n  $('Validate Payment Request').first().json.invoice_id +\n  '_' +\n  $now.toFormat('yyyyMMddHHmmssSSS') +\n  '.' +\n  ($('Webhook Submit Payment').first().binary.receipt.fileExtension || 'jpg')\n}}",
+              "value": "={{\n  '/home/node/.n8n-files/receipts/payment_' +\n  $('Validate Payment Request').first().json.invoice_id +\n  '_' +\n  $now.toFormat('yyyyMMddHHmmssSSS') +\n  '.' +\n  ($('Webhook Submit Payment').first().binary.receipt.fileExtension || 'jpg')\n}}",
               "type": "string"
             },
             {
@@ -1369,7 +1369,7 @@
         1536,
         992
       ],
-      "id": "e1a9d60b-ca21-45e7-8610-d9781555b157",
+      "id": "c7c1aba2-2270-4300-a412-8b07ad15d022",
       "name": "Prepare Payment Data"
     },
     {
@@ -1385,7 +1385,7 @@
         1936,
         992
       ],
-      "id": "f820cb5f-a3ec-4a79-9fc1-bf48a9fdf69d",
+      "id": "3c30971f-00e9-4b3b-8407-a7965bdeb3f1",
       "name": "Read/Write Files from Disk"
     },
     {
@@ -1402,11 +1402,11 @@
         2096,
         992
       ],
-      "id": "0b8cd1c5-eadc-4cf7-9ae5-2f572bb2b2f0",
+      "id": "f6fb3c2a-894b-4e9b-9cd3-9dea5f397a6f",
       "name": "Create Payment",
       "credentials": {
         "mySql": {
-          "id": "QFGnzi0HO3mMNlvx",
+          "id": "4dzaERnbUShF322a",
           "name": "MySQL account"
         }
       }
@@ -1425,11 +1425,11 @@
         2256,
         992
       ],
-      "id": "1e55b683-2eff-41bc-a745-217b54960320",
+      "id": "1de087dc-69fd-404d-b22f-059d799737b6",
       "name": "Get Created Payment",
       "credentials": {
         "mySql": {
-          "id": "QFGnzi0HO3mMNlvx",
+          "id": "4dzaERnbUShF322a",
           "name": "MySQL account"
         }
       }
@@ -1444,7 +1444,7 @@
         1744,
         992
       ],
-      "id": "f4416c4c-ebb0-400d-b600-ee17c94a68ab",
+      "id": "1824b0a4-4e0e-49b2-aa4d-2507acfb541e",
       "name": "Attach Receipt Binary"
     },
     {
@@ -1459,7 +1459,7 @@
         2688,
         992
       ],
-      "id": "745db987-ec1b-4745-8512-e90916cd39cf",
+      "id": "f954b21c-39a6-41fc-8bb1-df7c210383b2",
       "name": "Respond to Webhook Submit Payment"
     },
     {
@@ -1501,13 +1501,13 @@
         2528,
         992
       ],
-      "id": "4449d63d-1601-497c-8f93-922ddbde5976",
+      "id": "e5173b22-2a83-467e-8c64-09f649991773",
       "name": "Telegram - Send Payment",
       "webhookId": "a8b7fbdf-9085-47c2-a99e-835c44097481",
       "credentials": {
         "telegramApi": {
-          "id": "fu0pnrp8k527nwSO",
-          "name": "Telegram account 2"
+          "id": "BDV7Kzq0G6kBwDEb",
+          "name": "Telegram account"
         }
       }
     },
@@ -1521,7 +1521,7 @@
         2384,
         992
       ],
-      "id": "bf80f62d-0dcf-4012-aafe-6be07e3d26f4",
+      "id": "12d98a01-be10-4840-acc4-6c96da9e61ef",
       "name": "Attach Receipt For Telegram"
     },
     {
@@ -1537,13 +1537,13 @@
         912,
         1520
       ],
-      "id": "b7aaa54e-4e37-48e4-8a65-9befa4bf95f2",
+      "id": "5435aef0-25c3-481c-a0b9-41d7efba4db5",
       "name": "Telegram Trigger",
       "webhookId": "e75795cb-9337-463d-96d0-05c74392316e",
       "credentials": {
         "telegramApi": {
-          "id": "fu0pnrp8k527nwSO",
-          "name": "Telegram account 2"
+          "id": "BDV7Kzq0G6kBwDEb",
+          "name": "Telegram account"
         }
       }
     },
@@ -1578,7 +1578,7 @@
         1280,
         1520
       ],
-      "id": "6b531dcc-c563-42bc-9836-bf1e1a0d61df",
+      "id": "989a36d7-c806-4977-ae6b-adfe475fe07e",
       "name": "Is Approve?"
     },
     {
@@ -1593,12 +1593,12 @@
         1456,
         1424
       ],
-      "id": "7fb91091-6a5b-4d9c-9f43-51b4ab5e0625",
+      "id": "950311ec-0680-4633-b189-b2f7c67129f5",
       "name": "Approve Payment & Invoice",
       "alwaysOutputData": true,
       "credentials": {
         "mySql": {
-          "id": "QFGnzi0HO3mMNlvx",
+          "id": "4dzaERnbUShF322a",
           "name": "MySQL account"
         }
       }
@@ -1613,7 +1613,7 @@
         1104,
         1520
       ],
-      "id": "4e292555-0b9d-461a-9f37-d02523f9c815",
+      "id": "065de7f5-2155-4746-abb3-452e49f7459a",
       "name": "Parse Payment Action"
     },
     {
@@ -1628,12 +1628,12 @@
         2016,
         1664
       ],
-      "id": "a296cc58-f6a3-4485-8d49-a23e73fcd04c",
+      "id": "93f7f427-9e8b-4952-bee6-504ad6408feb",
       "name": "Reject Payment",
       "alwaysOutputData": true,
       "credentials": {
         "mySql": {
-          "id": "QFGnzi0HO3mMNlvx",
+          "id": "4dzaERnbUShF322a",
           "name": "MySQL account"
         }
       }
@@ -1653,13 +1653,13 @@
         3184,
         1536
       ],
-      "id": "d06581b1-16a3-4516-9aaa-1b4dcc1571bc",
+      "id": "586c7f6b-560a-4ab2-be59-cb0d63821cbe",
       "name": "Answer Callback Query",
       "webhookId": "5d8eee16-4ae9-4ae0-ab13-01ff39263da7",
       "credentials": {
         "telegramApi": {
-          "id": "fu0pnrp8k527nwSO",
-          "name": "Telegram account 2"
+          "id": "BDV7Kzq0G6kBwDEb",
+          "name": "Telegram account"
         }
       }
     },
@@ -1673,7 +1673,7 @@
         2432,
         1536
       ],
-      "id": "00efda46-ffed-433c-9aad-8452f681958d",
+      "id": "0edecff8-0978-4fe0-9041-d717c2661d9a",
       "name": "Prepare Telegram Edit"
     },
     {
@@ -1686,7 +1686,7 @@
         2832,
         1536
       ],
-      "id": "9aee3fad-96df-4313-bca9-4c1d02a330f4",
+      "id": "fe023ba9-6926-4d86-8016-eb835c7e401b",
       "name": "Prepare Final Telegram Message"
     },
     {
@@ -1701,11 +1701,11 @@
         2624,
         1536
       ],
-      "id": "a51ac9e4-9af5-46ba-8827-295df598663a",
+      "id": "4131da76-2911-4745-ad82-41f6a9eb1050",
       "name": "Get Payment Details",
       "credentials": {
         "mySql": {
-          "id": "QFGnzi0HO3mMNlvx",
+          "id": "4dzaERnbUShF322a",
           "name": "MySQL account"
         }
       }
@@ -1739,7 +1739,7 @@
         3008,
         1536
       ],
-      "id": "a228a858-c42f-4dc5-baa7-b16428737134",
+      "id": "82fa87b2-855e-4840-99be-2a6ae8d3dad1",
       "name": "Edit Receipt Caption"
     },
     {
@@ -1755,7 +1755,7 @@
         1872
       ],
       "typeVersion": 1,
-      "id": "23bc0e3a-a61b-4d2f-a4fd-ccb475008c6a",
+      "id": "50c445f2-1d47-41a2-97d4-a4694acfabf6",
       "name": "Sticky Note3"
     },
     {
@@ -1771,7 +1771,7 @@
         928,
         2000
       ],
-      "id": "74270009-722f-456e-8d62-ecb3445c802e",
+      "id": "b2f50bbb-2094-4b0d-81c3-8ccf64d8ce17",
       "name": "Webhook Complete Fulfillment",
       "webhookId": "8b17ccd7-ce9f-4e7b-a862-207edbe771d6"
     },
@@ -1787,11 +1787,11 @@
         1152,
         2000
       ],
-      "id": "3108bcf1-150f-4b76-90a9-d2f4e19456dd",
+      "id": "5d47cf1c-3e50-4acb-9a99-95988942c80f",
       "name": "Validate Fulfillment",
       "credentials": {
         "mySql": {
-          "id": "QFGnzi0HO3mMNlvx",
+          "id": "4dzaERnbUShF322a",
           "name": "MySQL account"
         }
       }
@@ -1827,7 +1827,7 @@
         1376,
         2000
       ],
-      "id": "03104e40-d862-4461-b2e9-6b6edc500102",
+      "id": "a11eac39-ae57-422b-878c-4cc838d1adcc",
       "name": "Is Paid?"
     },
     {
@@ -1842,12 +1842,12 @@
         1616,
         1920
       ],
-      "id": "acab5678-35c5-4ad2-9a41-0a551594548d",
+      "id": "99d1ca32-cf60-4355-b3aa-65612005e901",
       "name": "Complete Fulfillment",
       "alwaysOutputData": true,
       "credentials": {
         "mySql": {
-          "id": "QFGnzi0HO3mMNlvx",
+          "id": "4dzaERnbUShF322a",
           "name": "MySQL account"
         }
       }
@@ -1864,11 +1864,11 @@
         1840,
         1920
       ],
-      "id": "a38158f7-b0ad-49dc-bdd5-27b9e27fe56a",
+      "id": "27922e72-9f90-4385-9a5f-c1668238d270",
       "name": "Get Updated Invoice",
       "credentials": {
         "mySql": {
-          "id": "QFGnzi0HO3mMNlvx",
+          "id": "4dzaERnbUShF322a",
           "name": "MySQL account"
         }
       }
@@ -1885,7 +1885,7 @@
         2064,
         1920
       ],
-      "id": "7ab1452a-1299-4701-b727-0578bcb15f35",
+      "id": "434df402-adb7-4f7c-b873-72a057cb839a",
       "name": "Respond to Webhook Complete Fulfillment"
     },
     {
@@ -1900,7 +1900,7 @@
         1616,
         2080
       ],
-      "id": "99946f11-9350-41ea-a618-3207c007cb5f",
+      "id": "d33444c5-2b4b-4cbf-8055-a7847a0bc446",
       "name": "Respond - Invoice Not Paid"
     },
     {
@@ -1916,7 +1916,7 @@
         2720
       ],
       "typeVersion": 1,
-      "id": "3c6b275d-d101-41d4-827b-9cdbd4146af5",
+      "id": "bcb6b8cf-023d-48c0-897a-7696112b5aef",
       "name": "Sticky Note4"
     },
     {
@@ -1933,7 +1933,7 @@
         912,
         2800
       ],
-      "id": "1d3d0947-3f7e-4e6f-b608-e78f2382dd54",
+      "id": "fe62d065-ce3f-4f06-a0d1-94392d3480a7",
       "name": "Webhook Queue Status",
       "webhookId": "671a33be-a3f8-46e4-b4cc-896b41bdac23"
     },
@@ -1949,11 +1949,11 @@
         -816,
         1328
       ],
-      "id": "c96500f4-bb21-4745-85fa-723ec20b24a4",
+      "id": "a96a034d-5a22-4ef8-814d-3a7935103639",
       "name": "Get Patient",
       "credentials": {
         "mySql": {
-          "id": "QFGnzi0HO3mMNlvx",
+          "id": "4dzaERnbUShF322a",
           "name": "MySQL account"
         }
       }
@@ -1970,11 +1970,11 @@
         1136,
         2800
       ],
-      "id": "b849f5eb-f987-41ce-b616-38a5bd9a94e8",
+      "id": "f4478ad8-105f-4a67-bc28-da29bf284459",
       "name": "Get Queue Status",
       "credentials": {
         "mySql": {
-          "id": "QFGnzi0HO3mMNlvx",
+          "id": "4dzaERnbUShF322a",
           "name": "MySQL account"
         }
       }
@@ -1993,11 +1993,11 @@
         16,
         1328
       ],
-      "id": "16cdf651-e07a-4628-8c0c-9e5877e53a56",
+      "id": "0ae43d4e-fca1-4015-9936-72ff821500d9",
       "name": "Get Created Clinic Booking",
       "credentials": {
         "mySql": {
-          "id": "QFGnzi0HO3mMNlvx",
+          "id": "4dzaERnbUShF322a",
           "name": "MySQL account"
         }
       }
@@ -2016,11 +2016,11 @@
         240,
         1328
       ],
-      "id": "537bc522-a2b5-47c5-8f88-b908956a16e4",
+      "id": "1ffa544f-6e57-4b14-ad92-05c1301bfb86",
       "name": "Create Clinic Invoice",
       "credentials": {
         "mySql": {
-          "id": "QFGnzi0HO3mMNlvx",
+          "id": "4dzaERnbUShF322a",
           "name": "MySQL account"
         }
       }
@@ -2039,11 +2039,11 @@
         464,
         1328
       ],
-      "id": "42e1614c-3548-4e1e-89d9-0906cdef134c",
+      "id": "e511a3df-7dbb-4e45-91bf-da24f649836f",
       "name": "Get Created Clinic Invoice",
       "credentials": {
         "mySql": {
-          "id": "QFGnzi0HO3mMNlvx",
+          "id": "4dzaERnbUShF322a",
           "name": "MySQL account"
         }
       }
@@ -2062,11 +2062,11 @@
         1632,
         1424
       ],
-      "id": "266de9fe-2900-4c44-b650-1f97741a506d",
+      "id": "b14de939-dac6-4813-9f30-cb00e322efa8",
       "name": "Get Approved Payment Context",
       "credentials": {
         "mySql": {
-          "id": "QFGnzi0HO3mMNlvx",
+          "id": "4dzaERnbUShF322a",
           "name": "MySQL account"
         }
       }
@@ -2102,7 +2102,7 @@
         1792,
         1520
       ],
-      "id": "a80d6141-847d-4208-b1fa-2997ee10b027",
+      "id": "401abdcb-f3b7-4997-a04f-2aeea6d94278",
       "name": "Is Clinic Booking Invoice?"
     },
     {
@@ -2119,12 +2119,12 @@
         2224,
         1424
       ],
-      "id": "3fa108f8-baca-4799-8cf7-26e9f5fb2957",
+      "id": "67fd4397-4a5a-4774-9bb7-22a43f2f2146",
       "name": "Activate Clinic Booking",
       "alwaysOutputData": true,
       "credentials": {
         "mySql": {
-          "id": "QFGnzi0HO3mMNlvx",
+          "id": "4dzaERnbUShF322a",
           "name": "MySQL account"
         }
       }
@@ -2139,7 +2139,7 @@
         1312,
         608
       ],
-      "id": "69e0b2ce-151d-4bd1-a021-6c634e3d4f16",
+      "id": "fffd3d9d-5913-4607-829b-c3eed9907b0d",
       "name": "Prepare Pending Invoices Response"
     },
     {
@@ -2152,7 +2152,7 @@
         496,
         528
       ],
-      "id": "e3075e76-93f2-45ef-8558-9684d8b87206",
+      "id": "15fb07c5-7df4-4515-8692-bf8ba5fe83c0",
       "name": "Prepare Clinics Response"
     },
     {
@@ -2165,7 +2165,7 @@
         1328,
         2800
       ],
-      "id": "93b60369-2a45-4507-ac84-4c7ee4c0d4c6",
+      "id": "0474d3a5-a3cc-4d04-a075-29f35dd796f2",
       "name": "Respond to Webhook Queue Status"
     },
     {
@@ -2181,7 +2181,7 @@
         2272
       ],
       "typeVersion": 1,
-      "id": "a5eadb87-351d-48cb-ad23-cd0c8d315382",
+      "id": "2e2d6b6b-fd0f-44c9-9972-16868f9f9bb9",
       "name": "Sticky Note14"
     },
     {
@@ -2196,7 +2196,7 @@
         1696,
         2352
       ],
-      "id": "3d1c7039-f256-4b26-aef7-5a86ca455812",
+      "id": "e2bd2313-0409-475a-9d51-5657cf0c7f82",
       "name": "Webhook Laboratory Orders",
       "webhookId": "c7694b3e-b51c-4ce1-8eac-71c2f0e2772c"
     },
@@ -2212,11 +2212,11 @@
         1920,
         2352
       ],
-      "id": "93a7d6d2-cf56-4aba-8440-edff76d9544b",
+      "id": "30439255-5503-42d6-b291-971deb1fa954",
       "name": "Get Laboratory Orders",
       "credentials": {
         "mySql": {
-          "id": "QFGnzi0HO3mMNlvx",
+          "id": "4dzaERnbUShF322a",
           "name": "MySQL account"
         }
       }
@@ -2231,7 +2231,7 @@
         2368,
         2352
       ],
-      "id": "ae7abcf0-1e47-47f5-b4b1-fba6a4b651af",
+      "id": "6b058711-a954-4a37-8c82-18aaf53d4724",
       "name": "Respond to Webhook Laboratory Orders"
     },
     {
@@ -2244,7 +2244,7 @@
         2144,
         2352
       ],
-      "id": "66e67bc7-5e2e-4282-8313-f59cb50fb38c",
+      "id": "50c63a7a-0d02-44f6-951b-8eab27506081",
       "name": "Prepare Laboratory Response"
     },
     {
@@ -2260,7 +2260,7 @@
         2592
       ],
       "typeVersion": 1,
-      "id": "31c5547d-650a-4094-a204-1f23c0c54b86",
+      "id": "d537a69e-c20c-4fa8-bdeb-e9c9be74a0e1",
       "name": "Sticky Note15"
     },
     {
@@ -2275,7 +2275,7 @@
         1712,
         2656
       ],
-      "id": "cdd4a26e-65fc-44d6-9850-bf3b3ad5c065",
+      "id": "72733f33-2fe3-4b15-997d-eb140eb33d8e",
       "name": "Webhook Radiology Orders",
       "webhookId": "31fc217f-e51a-43b8-a5a0-1bde13de8685"
     },
@@ -2291,11 +2291,11 @@
         1936,
         2656
       ],
-      "id": "9bae5bb6-9bbd-444e-8758-011cca882617",
+      "id": "c9685b93-3e2c-4872-864f-04bfdf699f84",
       "name": "Get Radiology Orders",
       "credentials": {
         "mySql": {
-          "id": "QFGnzi0HO3mMNlvx",
+          "id": "4dzaERnbUShF322a",
           "name": "MySQL account"
         }
       }
@@ -2310,7 +2310,7 @@
         2128,
         2656
       ],
-      "id": "02982998-c3fa-4ea6-a401-1c6066eb678b",
+      "id": "97be2113-615b-4281-84cc-4c514bf0e19b",
       "name": "Prepare Radiology Response"
     },
     {
@@ -2323,7 +2323,7 @@
         2336,
         2656
       ],
-      "id": "6e191785-35c0-459c-b434-d1e4824e9c8d",
+      "id": "22fdeb38-f28e-499b-bb5d-645b04a9d85d",
       "name": "Respond to Webhook Radiology Orders"
     },
     {
@@ -2339,7 +2339,7 @@
         2864
       ],
       "typeVersion": 1,
-      "id": "9d7c0722-cb13-477c-aed5-feda0efbd71b",
+      "id": "7a9af1ec-a827-45ee-bb54-ccdb3cd30cfb",
       "name": "Sticky Note16"
     },
     {
@@ -2354,7 +2354,7 @@
         1696,
         2928
       ],
-      "id": "6c52e780-2cdf-4ebd-8d24-8befe5d332c6",
+      "id": "33f4539d-11be-4eff-9e06-dfdf55cd65d4",
       "name": "Webhook Pharmacy Orders",
       "webhookId": "d3abfb55-86c3-4007-9446-4f6d48b212dc"
     },
@@ -2370,12 +2370,12 @@
         1920,
         2928
       ],
-      "id": "bac996e1-f968-4903-9ccb-1a5a164b830b",
+      "id": "abc3d09e-eb0f-4472-b22a-8a443674b08f",
       "name": "Get Pharmacy Orders",
       "alwaysOutputData": true,
       "credentials": {
         "mySql": {
-          "id": "QFGnzi0HO3mMNlvx",
+          "id": "4dzaERnbUShF322a",
           "name": "MySQL account"
         }
       }
@@ -2390,7 +2390,7 @@
         2144,
         2928
       ],
-      "id": "ed72f455-4a3e-41d5-8f1f-ea335618e873",
+      "id": "a7e2596e-c1ea-4433-87ca-eb06884f685a",
       "name": "Prepare Pharmacy Response"
     },
     {
@@ -2403,7 +2403,7 @@
         2368,
         2928
       ],
-      "id": "1ef0ade2-4113-4e8d-9157-94c4164690e4",
+      "id": "0db4c768-a206-4e5c-a024-6fd9254eda91",
       "name": "Respond to Webhook Pharmacy Orders"
     }
   ],
@@ -3307,12 +3307,12 @@
     "executionOrder": "v1",
     "binaryMode": "separate"
   },
-  "versionId": "47bf7847-fa36-4758-bea7-1095d1f1fd38",
+  "versionId": "7f9e527a-f5ab-4f1b-89e4-43feeb8b3088",
   "meta": {
     "templateCredsSetupCompleted": true,
-    "instanceId": "26c35c2dadcf7194d5628240e62f220a2162c0d36748927ecf4e84a238e0b44f"
+    "instanceId": "9e138191837a6f6c561ad159e14968011de0853c2b09fa682ed68a107cc3c967"
   },
   "nodeGroups": [],
-  "id": "cKqZ0sGrTNAQw8hc",
+  "id": "IESl6JLwOZfCQBT2",
   "tags": []
 }
